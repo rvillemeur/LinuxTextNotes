@@ -1,0 +1,28 @@
+.PS
+box width 3 "this text is far too long for a default box";
+move;
+box; box width 1 height 1; box same; box
+line up left;
+arrow up left 1;
+arrow down left 1.5;
+arrow up left 2;
+down;
+line right 1 then down .5 left 1 then right 1;
+spline right 1 then down .5 left 1 then right 1;
+down;
+spline right then up then left then down ->;
+spline left then up right then down right ->;
+move;
+down;
+box dashed 0.02 "dashed";
+box rad 0.25 "box rad";
+box dotted 0.02 "dotted";
+right;  line thickness 1.5 <-->;
+left;
+circle fill; move; circle fill 0.4; move; circle fill 0.9;
+move; down;
+line ljust  "ljust text";
+left;
+line rjust below "rjust text";
+
+.PE
