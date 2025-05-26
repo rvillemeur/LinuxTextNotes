@@ -1,4 +1,10 @@
 # les terminaux
+
+## terminal as a text navigator
+
+Le terminal, en particulier le VT100, représente un standard permettant de définir
+une interface textuelle.
+
 ## code terminal pour linux
 
 VT100 commands and control sequences
@@ -220,3 +226,6 @@ control-backspace.
 [ITerm2 - MacOSX](https://iterm2.com/documentation-escape-codes.html)
 [Code Xterm](https://invisible-island.net/xterm/ctlseqs/ctlseqs.html)
 [Référence Vt100](https://vt100.net/)
+https://gist.github.com/delameter/b9772a0bf19032f977b985091f0eb5c1
+https://espterm.github.io/docs/VT100%20escape%20codes.html
+https://en.wikipedia.org/wiki/ANSI_escape_code
