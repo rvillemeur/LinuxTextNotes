@@ -44,3 +44,8 @@ interfaces graphiques complètes.
 [textualize](https://textual.textualize.io/) ,[site officiel](https://www.textualize.io/) et [repo github](https://github.com/Textualize)
 D'autres librairies sont disponibles sur internet. Il suffit de les rechercher par
 *TUI libraries*, en spécifiant le language voulu
+
+## exemple d'application TUI
+[liste github](https://github.com/rothgar/awesome-tuis)
+[TUI pour apprendre le terminal](https://github.com/learnbyexample/TUI-apps?tab=readme-ov-file)
+
