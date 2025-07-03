@@ -166,4 +166,9 @@ peuvent pas communiquer entre eux si un cadriciel (framework) standard n'est pas
 utilisé. Sur Unix, c'est le format texte, et les entrées/sorties standard.  
 Ailleurs, [COM](https://www.codeproject.com/Articles/6726/COM-from-scratch-PART-ONE), java 
 ou .Net sont d'autres approche de développement logiciel et de réutilisation de 
-composant développé pour ces plates-formes
+composant développé pour ces plates-formes. On peut noter l'existence de DCOM 
+(ou Distributed COM), qui était une tentative de Microsoft d'avoir des IPC/RPC 
+distribué sur différents machines.  Aujourd'hui, la communication inter-process 
+se fait d'avantage entre service web et API (Application Programming Interface) 
+associé plutot qu'entre outils locaux, et les outils comme DCOM sont tombés en 
+désuétude.
