@@ -1,29 +1,33 @@
 # Note bash
 
 ## introduction
-a shell is simply a macro processor that executes commands. The term macro
-processor means functionality where text and symbols are [expanded](https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html) to create
-larger expressions.
 
+Un shell est simplement un macroprocesseur qui exécute des commandes. Le terme « 
+macroprocesseur » désigne une fonctionnalité qui permet 
+d'[étendre](https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html) 
+du texte et des symboles afin de créer des expressions plus longues. 
 
-A Unix shell is both a command interpreter and a programming language.  As a
-command interpreter, the shell provides the user interface to the rich set of
-GNU utilities.  The programming language features allow these utilities to be
-combined.
+Un shell Unix est à la fois un interpréteur de commandes et un langage de 
+programmation. En tant qu'interpréteur de commandes, le shell fournit à 
+l'utilisateur une interface vers le riche ensemble d'utilitaires GNU. Les 
+fonctionnalités du langage de programmation permettent de combiner ces 
+utilitaires. 
 
-Shells may be used interactively or non-interactively. In interactive mode, they
-accept input typed from the keyboard. When executing non-interactively, shells
-execute commands read from a file.
+Les shells peuvent être utilisés de manière interactive ou non interactive. En 
+mode interactif, ils acceptent les entrées saisies au clavier. En mode non 
+interactif, les shells exécutent les commandes lues dans un fichier. 
 
-A shell allows execution of GNU commands, both synchronously and asynchronously.
-The shell waits for synchronous commands to complete before accepting more
-input; asynchronous commands continue to execute in parallel with the shell
-while it reads and executes additional commands. The redirection constructs
-permit fine-grained control of the input and output of those commands.
-Moreover, the shell allows control over the contents of commands’ environments.
+Un shell permet l'exécution de commandes GNU, de manière synchrone ou 
+asynchrone. Le shell attend que les commandes synchrones soient terminées avant 
+d'accepter d'autres entrées ; les commandes asynchrones continuent à s'exécuter 
+en parallèle avec le shell pendant qu'il lit et exécute des commandes 
+supplémentaires. Les constructions de redirection permettent un contrôle fin de 
+l'entrée et de la sortie de ces commandes.  De plus, le shell permet de 
+contrôler le contenu de l'environnement des commandes. 
 
-Shells also provide a small set of built-in commands (builtins) implementing
-functionality impossible or inconvenient to obtain via separate utilities.
+Les shells fournissent également un petit ensemble de commandes intégrées 
+(builtins) qui implémentent des fonctionnalités impossibles ou peu pratiques à 
+obtenir via des utilitaires séparés.
 
 ## bash built-ins
 
@@ -140,21 +144,26 @@ https://www.gnu.org/software/bash/manual/html_node/index.html#SEC_Contents
 https://www.man7.org/linux/man-pages/man1/bash.1.html
 https://tldp.org/LDP/Bash-Beginners-Guide/html/index.html
 
-## Limites des outils et autres langages
+## Philosophie des outils et intégration entre programmes
 
-Limites des outils
-Les outils traitent de sortie textuelle, qu'il faut parser et interpréter, et
-gérer la communication entres processus.
+La philosophie des outils Unix se résume [ainsi](https://en.wikipedia.org/wiki/Unix_philosophy):
 
-Awk permet de traiter les fichiers structurés
-Pour les traitements avancés, il vaut mieux utiliser d'autres outils
+1. Chaque programme ne doit faire qu'une seule chose et bien le faire, plutôt 
+   que d'ajouter des fonctionnalités à un programme existant.
+2. Les programmes doivent pouvoir travailler ensemble. La sortie d'un 
+   programme peut devenir l'entrée un autre programme (en particulier à l'aide 
+   du pipe "|". 
+3. Le format texte est privilégié, car c'est un format d'échange universel
 
-Pour le traitement de texte et la programmation procédurale et objet
-https://www.perl.org
+Ce qui fait la force de cette philosophie, c'est que, de part sa simplicité, on 
+peut écrire des programmes dans n'importe quel langage, à condition qu'ils 
+puissent lire sur les entrées/sorties standard (STDIN, STDOUT, STDERR). C'est 
+une forme basique d'IPC (Inter Process Communication - Communication Inter 
+Processus), qui démultiplie la portée de chaque commande utilisée.
 
-Pour des interfaces graphiques et la plupart des commandes systèmes
-https://www.tcl-lang.org/
-
-Pour des langages plus généralistes
-Python et Ruby, ou nodejs.
-
+En effet, les commandes écrites par différents vendeurs et developpeurs ne 
+peuvent pas communiquer entre eux si un cadriciel (framework) standard n'est pas 
+utilisé. Sur Unix, c'est le format texte, et les entrées/sorties standard.  
+Ailleurs, [COM](https://www.codeproject.com/Articles/6726/COM-from-scratch-PART-ONE), java 
+ou .Net sont d'autres approche de développement logiciel et de réutilisation de 
+composant développé pour ces plates-formes
