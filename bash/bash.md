@@ -162,14 +162,26 @@ une forme basique d'IPC (Inter Process Communication - Communication Inter
 Processus), qui démultiplie la portée de chaque commande utilisée.
 
 En effet, les commandes écrites par différents vendeurs et developpeurs ne 
-peuvent pas communiquer entre eux si un cadriciel (framework) standard n'est pas 
+peuvent pas communiquer entre eux si un cadriciel (framework) standard est
 utilisé. Sur Unix, de façon historique,c'est le format texte, et les 
 entrées/sorties standard.  Ailleurs, 
 [COM](https://www.codeproject.com/Articles/6726/COM-from-scratch-PART-ONE), java 
-ou .Net sont d'autres approche de développement logiciel et de réutilisation de 
-composant développé pour ces plates-formes. On peut noter l'existence de DCOM 
-(ou Distributed COM), qui était une tentative de Microsoft d'avoir des IPC/RPC 
-distribué sur différents machines.  Aujourd'hui, la communication inter-process 
-se fait d'avantage entre service web et API (Application Programming Interface) 
-associé plutot qu'entre outils locaux, et les outils comme DCOM sont tombés en 
-désuétude.
+ou .Net sont d'autres approche de développement logiciel multi-language.  Il 
+faut cependant que soit les autres languages soient portées sur la plateforme 
+([Jython](https://www.jython.org/), [IronPython](https://ironpython.net/)), soit 
+qu'un module soit écrit pour interfacer avec COM (Intégré avec Visual Basic, ou 
+le module [PyWin32](https://pywin32.com/guide/)
+
+On peut noter l'existence de DCOM (ou Distributed COM), qui était une tentative 
+de Microsoft d'avoir des IPC/RPC distribué sur différents machines.
+Aujourd'hui, la communication inter-process se fait d'avantage entre service web 
+et API (Application Programming Interface) associé plutot qu'entre outils 
+locaux, et les outils comme DCOM sont tombés en désuétude.
+
+Enfin, le rêve d'une machine virtuelle multi-language sera peut être une réalité 
+avec [web assembly](https://webassembly.org/), avec par exemple 
+[nukita](https://github.com/Nuitka/Nuitka) qui permet de compiler du code Python 
+vers Wasm. On trouve des modules similaire pour 
+[Perl](https://perlwasm.github.io/) et bien sur 
+[Javascript](https://developer.mozilla.org/en-US/docs/WebAssembly/Guides/Using_the_JavaScript_API)
+
