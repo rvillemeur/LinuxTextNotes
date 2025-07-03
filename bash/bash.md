@@ -163,8 +163,9 @@ Processus), qui démultiplie la portée de chaque commande utilisée.
 
 En effet, les commandes écrites par différents vendeurs et developpeurs ne 
 peuvent pas communiquer entre eux si un cadriciel (framework) standard n'est pas 
-utilisé. Sur Unix, c'est le format texte, et les entrées/sorties standard.  
-Ailleurs, [COM](https://www.codeproject.com/Articles/6726/COM-from-scratch-PART-ONE), java 
+utilisé. Sur Unix, de façon historique,c'est le format texte, et les 
+entrées/sorties standard.  Ailleurs, 
+[COM](https://www.codeproject.com/Articles/6726/COM-from-scratch-PART-ONE), java 
 ou .Net sont d'autres approche de développement logiciel et de réutilisation de 
 composant développé pour ces plates-formes. On peut noter l'existence de DCOM 
 (ou Distributed COM), qui était une tentative de Microsoft d'avoir des IPC/RPC 
