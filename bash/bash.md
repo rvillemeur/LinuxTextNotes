@@ -178,7 +178,10 @@ classic](https://en.wikipedia.org/wiki/Visual_Basic_(classic), ou le module
 [PyWin32](https://pywin32.com/guide/). Cette approche est cependant plus 
 complexe, il faut par exemple s'assurer de la cohérence des types de données 
 entre langages de programmation (transtypage), ainsi que des mécanismes 
-d'allocation et de libération de mémoire.
+d'allocation et de libération de mémoire. Dans le cas de COM, il y avait aussi 
+un mécanisme d'identification des composants, soit à l'aide de la base de 
+registre Windows, ou plus tard, des composants RegFreeCOM. COM avait aussi 
+différentes façon de gérer le multi-threading.
 
 On peut noter l'existence de DCOM (ou Distributed COM), qui était une tentative 
 de Microsoft d'avoir des IPC/RPC distribué sur différents machines.
