@@ -124,8 +124,6 @@ ESC [ ? 1;0 c     report - type VT100
 
 ### Setup Functions:
 
-+  ESC [ ? 2 l       enter VT52 mode
-+  ESC <             exit VT52 mode
 +  ESC [ ? 3 h       132 column mode
 +  ESC [ ? 3 l       80 column mode
 +  ESC [ ? 4 h       smooth scroll
@@ -222,6 +220,7 @@ in VT100 emulation.  To get a true ascii backspace (character 8) you must press
 control-backspace.
 
 ## Références des terminaux
+http://www.braun-home.net/michael/info/misc/VT100_commands.htm
 [Terminal windows](https://learn.microsoft.com/en-us/windows/console/console-virtual-terminal-sequences)
 [ITerm2 - MacOSX](https://iterm2.com/documentation-escape-codes.html)
 [Code Xterm](https://invisible-island.net/xterm/ctlseqs/ctlseqs.html)
