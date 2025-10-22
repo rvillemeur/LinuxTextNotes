@@ -8,9 +8,11 @@ Mettre `vim9script` au début du script pour s'assurer que Vim va bien l'éxecut
 sous ce mode. Cela permet aussi à d'autre personne d'immédiatement comprendre 
 que le script n'utilise pas la syntaxe legacy de Vim
 
-Pour avoir de l'aide, taper `:help vim9`.
-lien utile: [apprendre vim9](https://learnxinyminutes.com/vim9script/), 
-et [vim9 script for python developer](https://github.com/yegappan/Vim9ScriptForPythonDevelopers/blob/main/Vim9ScriptForPythonDevelopers.md)
+Pour avoir de l'aide, taper `:help vim9`.  lien utile: [apprendre
+vim9](https://learnxinyminutes.com/vim9script/), et [vim9 script for python
+developer](https://github.com/yegappan/Vim9ScriptForPythonDevelopers/blob/main/Vim9ScriptForPythonDevelopers.md)
+Le site de référence reste [Learn vimscript the hard
+way](https://learnvimscriptthehardway.stevelosh.com/), mais il est d'abord orienté VimScript d'origine, sans inclure les optimisations propre à VimScript9
 
 
 ## éléments de base
