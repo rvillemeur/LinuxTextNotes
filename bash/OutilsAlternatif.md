@@ -12,6 +12,7 @@ Linux   -> [fleet](https://fleetdm.com/)
 # Email Transport Agent
 Windows -> Outlook & Exchange
 Linux   -> [Postfix](https://www.postfix.org/) & Sendmail & Exim
+Exemple pour postfix: https://maxadamski.com/blog/2025/10/email.html
 
 # Email client
 Windows -> outlook
@@ -34,7 +35,7 @@ https://shazow.net/posts/ssh-how-does-it-even/
 
 # messagerie
 Windows -> Teams
-Linux   -> ???
+Linux   -> [Mattermost]( https://mattermost.com/)
 
 # EDR
 Windows -> Defender
