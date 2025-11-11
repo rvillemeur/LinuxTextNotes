@@ -11,6 +11,20 @@ On y retrouve
 - Le shell qui permet de relier ces programmes entre eux en offrant à l'utilisateur un environnement interactif
 - Le terminal, qui par ses codes de contrôles permet de créer des interfaces utilisateur textuelles (TUI) avancé
 
+Dans l'ordre:
+- L'environnement de base, le shell (bash), et la communication inter-processus.
+- traitement de texte - le règne de la ligne de commande.
+- * outils pour analyser le texte (head, tail, cut, sort, etc.)
+- * outils fournissant des informations (ls, pwd, etc.), et tous les outils en ligne de commande
+- édition de texte - l'éditeur VI.
+- * édition de base
+- * Commande g et s
+- * intégration avec le shell
+- L'interaction avec le texte: Terminal et TUI.
+- * le terminal tty et ses code de mise en page
+- * quelques outils TUI (mc, mail, etc.)
+- * développé ses propres outils avec python et/ou perl
+- Outils avancé, la mise en page de texte avec Groff.
 
 La force d'un éditeur comme Vi est sa totale intégration avec l'ensemble.
 Outre le fait qu'il utilise les codes consoles pour permettre une affichage
