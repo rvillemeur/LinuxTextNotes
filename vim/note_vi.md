@@ -1,5 +1,10 @@
 # VI and Ex text editor
 
+La plupart des commandes VI sont choisies de façon à:
+- limiter le nombre de touche pour atteindre son but. C'est même devenu un sport chez certain adepte de Vi. Recherchez ViGolf sur internet.
+- limiter le mouvements des doigts et des mains sur le clavier. L'éditeur a été conçu en ayant pour référence le clavier du terminal ADM-3A.
+- faciliter les moyens mnémotechniques, en gardant à l'esprit que les commandes ont été pensé par un programmeur anglophone. La plupart des commandes tiennent en une lettre.
+
 ## Commande VI
 
 Les fonctions de base d'un éditeur de texte sont de:
@@ -278,3 +283,35 @@ Un texte répétitif peut être associé à une combinaison de touche
 
 >    :ab[brev]       - définit une abbréviation
 >    :una[bbreviate] - retire la définition de l'abbréviation
+
+## La puissance de Vi: les regex, et les commandes *s* et *g*
+
+[site de référence](https://vimregex.com/)
+
+## la puissance de Vi: intégration avec les commandes texte disponible sous Unix/Linux.
+
+Soit 
+`:` *range* `!` *commande*
+
+Les commandes peuvent être multiples, séparé par de pipe.
+
+Exemple
+
+1. trier les données
+`:%!sort`
+
+2. formater les donnés
+`:%!fmt`
+
+3. Obtenir la frequence des lignes d'un fichier:
+`%!sort | uniq -c | sort -n`
+
+4. Insérer le résultat d'une commande dans le fichier en cours:
+`:r ! ls -l | grep bin`
+
+## pour les curieux
+
+[le terminal et le clavier utilisé pour créer VI](http://xahlee.info/kbd/history_of_vi_keys.html).
+[autre page](http://xahlee.info/kbd//ADM-3A_terminal.html)
+
+
