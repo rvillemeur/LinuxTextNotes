@@ -45,6 +45,15 @@ interfaces graphiques complètes.
 D'autres librairies sont disponibles sur internet. Il suffit de les rechercher par
 *TUI libraries*, en spécifiant le language voulu
 
+On a pu voir que la plate-forme permet de chainer des utilitaire simple pour créer des traitement complexe sur le texte.
+Un language comme Python permet de créer des programmes en interface texte permettant d'intéragir avec la donnée.
+
+Un éditeur comme Vim permet de manipuler le texte. On peut intéragir avec lui sur un mode client/serveur, et c'est intégré dans une librarie Python: https://github.com/andri-ch/vimrunner-python.
+Tmux permet de faire du multi-fenétrage dans un terminal. La encore, un librarie Python permet d'interagir par programmation. https://github.com/tmux-python/libtmux.
+
+A partir de ces différentes libraries ( *textualize, vimrunner-python, libtmux* ), on peut imaginer créer des interface textuelle permettant d'intéragir avec le texte et de fournir des interfaces sur mesure pour l'utilisateur. 
+
+
 ## exemple d'application TUI
 [liste github](https://github.com/rothgar/awesome-tuis)
 [TUI pour apprendre le terminal](https://github.com/learnbyexample/TUI-apps?tab=readme-ov-file)

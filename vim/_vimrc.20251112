@@ -1,0 +1,734 @@
+" Ne pas assurer la compatibilité avec l'ancien Vi
+set nocompatible
+
+"{{{ vim-plug set-up
+" source: https://github.com/junegunn/vim-plug
+"if empty(glob('~/.vim/autoload/plug.vim'))
+"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+"    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"endif
+call plug#begin('~/.vim/plugged')
+"" My Bundles here:
+" color theme
+Plug 'cocopon/iceberg.vim'
+" deal with unicode character
+Plug 'chrisbra/unicode.vim'
+" powerline-like style for Vim status bar
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive' " git plugin for vim
+" toggle filesystem explorer
+Plug 'scrooloose/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'mhinz/vim-startify'
+Plug 'wuelnerdotexe/nerdterm'   "toggle terminal
+" full path fuzzy file, buffer, mru, tag, ... finder for Vim
+Plug 'kien/ctrlp.vim'
+"Plug 'kshenoy/vim-signature'
+Plug 'dpelle/vim-languagetool'
+"Emoji management
+"Plug 'kyuhi/vim-emoji-complete'
+Plug 'junegunn/vim-emoji'       "insert emoji 2
+" improve tabular alignment of data
+"Plug 'godlygeek/tabular'
+" better markdown support
+Plug 'preservim/vim-markdown'
+Plug 'dhruvasagar/vim-table-mode'
+"Plug 'vimwiki/vimwiki'
+Plug 'rickhowe/wrapwidth'
+"Plug 'tmux-plugins/vim-tmux'
+"Plug 'fholgado/minibufexpl.vim'
+Plug 'jlanzarotta/bufexplorer'
+"Better window managementevicons'
+Plug 'Aster89/WinZoZ'
+" Distraction free vim
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'kshenoy/vim-signature'    "place, toggle and display marks.
+Plug 'gcmt/taboo.vim'           "help renaming vim tabs
+Plug 'Aster89/WinZoZ'           "Better window management
+Plug 'ryanoasis/vim-devicons'
+Plug 'mhinz/vim-signify'        "show difference in git 
+Plug 'adelarsq/vim-emoji-icon-theme' "another emoji, test from devicons
+Plug 'lambdalisue/vim-glyph-palette' "apply colors on Nerd Fonts.
+" All of your Plugins must be added before the following line
+
+call plug#end()            " required
+
+"automatic loading of plugin and indent rule, bases on file type
+filetype plugin on
+filetype indent on
+
+" }}} end VUNDLE set-up
+" {{{ Options des plugins de vim
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_powerline_fonts=1
+let g:airline_theme='iceberg'
+"let g:airline_solarized_bg='base_16'
+"let airline_solarized_enable_command_color = 1
+
+" language tool configuration and document language
+let g:languagetool_jar = 'C:\devzone\LanguageTool-5.9\languagetool-commandline.jar'
+
+" Minibuffer explorer configuration
+"let g:miniBufExplVSplit = 30   " column width in chars
+"let g:miniBufExplBRSplit = 0   " Put new window below
+"let g:miniBufExplAutoStart = 1 " Autostart Mini buf explorer
+
+"let g:vim_markdown_conceal_code_blocks = 0
+let vim_markdown_fenced_languages = ['smalltalk=st']
+let vim_markdown_folding_style_pythonic = 1
+let vim_markdown_folding_level = 1
+let vim_markdown_toc_autofit = 1
+let vim_markdown_strikethrough = 1
+let vim_markdown_edit_url_in = 'vsplit'
+
+"emoji complete
+"let g:emoji_complete_overwrite_standard_keymaps = 0
+
+"emoji completion with C-xC-u
+set completefunc=emoji#complete
+
+" Tweaks for browsing
+let g:netrw_banner=0        " disable annoying banner
+let g:netrw_browse_split=4  "open in prior window
+let g:netrw_altv=1          " open splits to the right
+let g:netrw_liststyle=3     " tree view
+"let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide=',\(^\|\s\s\)\zs\.\S\+'
+
+" NERDTree option
+"let NERDTreeHijackNetrw=1
+
+"clipboard option - register are not used the same, need to investigate
+"further
+"set clipboard=unnamedplus
+" }}} end windows set-up
+" {{{ Options de vim
+"vim sera toujours en anglais
+set langmenu=en_US.UTF-8
+"language US
+" encodage par défaut
+set encoding=utf-8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+" Background colors for active vs inactive windows.
+" Color is set in WindowManagement augroup
+hi NormalNC ctermbg=255
+
+" Set options and add mapping such that Vim behaves a lot like MS-Windows
+" backspace and cursor keys wrap to previous/next line
+set backspace=indent,eol,start whichwrap+=<,>,[,]
+
+"let g:languagetool_lang='en-US'
+set spelllang=fr_FR
+
+" set autowrite when switching to another buffer
+set autowrite
+
+" session management option
+set sessionoptions=blank,buffers,tabpages
+
+" controle mieux le copier/coller du systeme
+set paste
+
+"change window cwd par rapport au fichier
+set autochdir
+
+" ajout d'une ligne colorée pour surligner la ligne en cours
+set cursorline
+
+" Met en évidence la colonne après  'textwidth'
+set colorcolumn=+1
+
+" disable mouse
+set mouse=c
+"set ttymouse=c
+
+" show (partial) command in the last line of the screen
+set showcmd
+
+" Active la coloration syntaxique
+syntax on
+
+"see :help :syn-sync for this
+syntax sync fromstart
+
+"affiche par défaut les tabs de fenetre
+set showtabline=2
+
+" ajout de la numérotation des lignes
+set number
+
+" garde la position du curseur entre buffer
+set startofline
+
+"automatic wrap de texte
+set wrap
+set breakindent                     " keep indentation when lines break
+set breakindentopt=shift:2          " but shift it by 2 spaces
+set linebreak                       " break only at specific characters, :h breakat
+set sidescroll=5
+" Largeur maxi du texte inséré
+set textwidth=80
+set wrapmargin=80
+set lbr
+set formatoptions=c "autowrap comment
+set formatoptions+=t "autowrap text enable
+set formatoptions+=q "allow formatting of comments
+"set formatoptions+=a "autoformatting of paragraph"
+set formatoptions+=n "recognize numbered list"
+
+set ai "Auto indent
+set si "Smart indent
+
+" Affiche les commandes dans la barre de status
+set showcmd
+
+" Affiche la paire de parenthèses
+set showmatch
+
+" Pas de beep intempestif, visual bell
+set vb
+
+" visual autocomplete for command menu
+set wildmenu
+
+" redraw only when we need to.
+set lazyredraw
+
+" affiche les tabulation et les espaces de fin de ligne
+set list
+set listchars=tab:>-,trail:- ",eol:¬
+set listchars+=precedes:<,extends:>
+
+" pas de format de nombre pour ctrl-x ctrl-a
+set nrformats=
+
+"backspace permet de revenir en arriere tout le temps
+set backspace=indent,eol,start
+
+" Activation de la gestion des ouvertures/fermetures de folding
+set foldenable
+
+" Affichage d'une ligne de '=' sur les pliages
+set fillchars+=fold:=
+
+" change character for split window
+" the │ character come from digraph table. 
+" to get it, <c-k>VV or <c-v> u 2503
+highlight VertSplit cterm=NONE
+set fillchars+=vert:┃
+"set fillchars+=vert:
+
+" Le découpage des folders se base sur l'indentation
+"set foldmethod=indent
+" 4 niveaux d'indentation par défaut pour les folders
+set foldlevel=4
+set foldcolumn=3
+
+" encodage par défaut
+"set encoding=utf-8
+" traitement des espaces et des tabulations:
+set tabstop=4
+set softtabstop=4
+set expandtab "use space instead of tabs
+" indique le nombre d'espace utilisé lors de l'indentation automatique.
+set shiftwidth=4
+
+" Be smart when using tabs ;)
+set smarttab
+
+" conceal level - this allow for example, markdown to appear formatted without displaying formating markup (e.g. **bold** will be bold)
+set conceallevel=2
+set concealcursor=nc
+
+" pas de backup
+set nobackup
+
+" pas de fichier de swap
+set nowb
+set noswapfile
+
+" Sets how many lines of history VIM has to remember
+set history=500
+
+" search down into subfolders
+" provide tab-completion for all file-related tasks
+set path+=**
+
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" Always show current position
+set ruler
+
+" Height of the command bar
+set cmdheight=1
+
+set ignorecase  " ignore la casse de caractére
+set smartcase   " Suit la casse du mot recherché
+set gdefault    " Applique le flag de substitution g par defaut
+set incsearch   " met en valeur le motif de recherche
+set showmatch   " met en valeur le motif de recherche
+set hlsearch    " met en valeur le motif de recherche
+
+" For regular expressions turn magic on
+set magic
+
+" Set regular expression engine automatically
+set regexpengine=0
+
+" Show matching brackets when text indicator is over them
+set showmatch
+
+" How many tenths of a second to blink when matching brackets
+set mat=2
+
+" No annoying sound on errors
+"set noerrorbells
+"set novisualbell
+"set t_vb=
+"set tm=500
+
+" configure the 'make' command to run rspec
+" set makeprg=bundle\ exec\ rspec\ -f\ QuickFixFormatter
+
+" }}}
+"" {{{ Définition de la barre de status
+"" Affiche une barre de status en bas de l'écran
+"set laststatus=2
+"" Contenu de la barre de status
+"set statusline=%F                       "full path to the file to the buffer
+"set statusline+=%m                      "Mofified text flag
+"set statusline+=%r                      "Readonly text flag
+"set statusline+=%h                      "Help buffer flog
+"set statusline+=%w\                     "Preview window flag
+"set statusline+=[WRAP=%{&formatoptions}]\ 
+"set statusline+=[FORMAT=%{&fileformat}] "file format
+"set statusline+=[ENCODING=%{&encoding}] "file encoding
+"set statusline+=[TYPE=%Y]\              "file type
+"set statusline+=[REG=%{v:register}]     "register used
+"set statusline+=[ASCII=\%03.3b]\       "ascii code
+"set statusline+=[HEX=\%02.2B]\         "hex code
+"set statusline+=%=[POS=%04l%*/%04L]     "Number of line in buffer
+"set statusline+=[%02p%%]                "percentage through the file
+"set statusline+=[COL=%03v]              "position in buffer
+
+"use to highlight the statusline, you can define from User1 to User9 color
+"for example, to use User 1, you include %1* in front of the value
+"like set statusline +=%1*%4v\ %*
+hi User1 guifg=#eea040 "guibg=#222222
+" }}}
+" {{{ custom functions
+"fonction de nettoyage d'un fichier issu du monde dos:
+" - remplacement des tabulations par des espaces
+" - suppression des caractères ^M en fin de ligne
+" le ^M est obtenu par la combinaison de touche Ctrl-V + return
+function! CleanDosCode()
+  set fileformat=unix
+  %retab
+  %s///g
+  call s:DisplayStatus('fichier dos nettoyé')
+endfunction
+
+"fonction d'affichage d'un message en inverse video
+function! s:DisplayStatus(msg)
+  echohl Todo
+  echo a:msg
+  echohl None
+endfunction
+
+"convert emoji name like :smile: into 😄
+
+function! ConvertEmojiName()
+  :%s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g
+endfunction
+
+"showing highlight group
+"nmap <leader>sp :call <SID>SynStack()<CR>
+"function! <SID>SynStack()
+"  if !exists("*synstack")
+"    return
+"  endif
+"  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+"endfunc
+
+" Comparaison des modifications en cours par rapport à la dernière version enregistrée
+function! DiffWithFileFromDisk()
+  let filename = expand('%')
+  let diffname = filename . '.fileFromBuffer'
+  exec 'saveas! ' . diffname
+  diffthis
+  vsplit
+  exec 'edit ' .filename
+  diffthis
+endfunction
+
+function! MakeSession()
+  let b:sessiondir = $HOME . "/.vim/sessions"
+  if (filewritable(b:sessiondir) != 2)
+    exe 'silent !mkdir -p ' b:sessiondir
+    redraw!
+  endif
+  let b:filename = b:sessiondir . '/session.vim'
+  exe "mksession! " . b:filename
+endfunction
+
+function! LoadSession()
+  let b:sessiondir = $HOME . "/.vim/sessions"
+  let b:sessionfile = b:sessiondir . "/session.vim"
+  if (filereadable(b:sessionfile))
+    exe 'source ' b:sessionfile
+  else
+    echo "No session loaded."
+  endif
+endfunction
+
+
+"function! SuperCleverTab()
+"  "check if at beginning of line or after a space
+"  if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+"      return "\<Tab>"
+"  else
+"      " do we have omni completion available
+"      if &omnifunc != ''
+"          "use omni-completion 1. priority
+"          return "\<C-X>\<C-O>"
+"      elseif &dictionary != ''
+"          " no omni completion, try dictionary completion
+"          return "\<C-x>\<C-K>"
+"     else
+"          "use omni completion or dictionary completion 
+"          "use known-word completion
+"           return "\<C-x>\<C-n>"
+"     endif
+"  endif
+"endfunction
+"session management
+"integration de goyo
+function! s:goyo_enter()
+  MBEClose
+  Limelight
+endfunction
+
+function! s:goyo_leave()
+  MBEOpen
+  Limelight!
+endfunction
+" }}}
+" {{{ Mappings interne
+" type de Mapping
+" i[nsert]nore[cursion]map
+" n[ormal]nore[cursion]map
+" v[isual]nore[cursion]map
+" c[ommand]nore[cursion]map
+" o[perator]nore[cursion]map
+" s[select]nore[cursion]map
+
+let mapleader = ","
+let maplocalleader = "\\"
+
+" évite d'invoquer Ex
+nnoremap Q <nop>
+
+"définition des touches de navigation dans l'aide VIM
+" activer un lien en appuyant sur Return
+nnoremap <Return> <C-]>
+" Revenir à la page précédente avec backspace
+nnoremap <BS> <C-T>
+
+" recharger le fichier $HOME/.vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr>
+" édite le fichier $HOME/.vimrc
+noremap <leader>ev :vsplit $MYVIMRC<cr>
+
+" Déplacement dans le fichier
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+nnoremap j gj
+nnoremap k gk
+nnoremap gk k
+nnoremap gj j
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+" mapping pour faciliter la recherche
+nnoremap / /\v
+vnoremap / /\v
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+
+" supprime la mise en valeur de la recherche
+nnoremap <leader><space> :nohlsearch<cr>
+" remappe la recherche de parenthèse par % vers tab
+nnoremap <tab> %
+vnoremap <tab> %
+
+
+" se déplacer plus facilement dans les fenêtres
+" terminal mode
+tnoremap <C-h> <c-\><c-n><c-w>h
+tnoremap <C-h> <c-w><c-w>h
+tnoremap <C-j> <c-w><c-w>j
+tnoremap <C-k> <c-w><c-w>k
+tnoremap <C-l> <c-w><c-w>l
+" Insert mode:
+inoremap <C-h> <Esc><c-w>h
+inoremap <C-j> <Esc><c-w>j
+inoremap <C-k> <Esc><c-w>k
+inoremap <C-l> <Esc><c-w>l
+" Visual mode:
+vnoremap <C-h> <Esc><c-w>h
+vnoremap <C-j> <Esc><c-w>j
+vnoremap <C-k> <Esc><c-w>k
+vnoremap <C-l> <Esc><c-w>l
+" Normal mode:
+nnoremap <C-h> <c-w>h
+nnoremap <C-j> <c-w>j
+nnoremap <C-k> <c-w>k
+nnoremap <C-l> <c-w>l
+nnoremap <leader>w <C-w>v<C-w>l
+
+" terminal escape
+tnoremap <Esc> <C-\><C-n>
+tnoremap <M-[> <Esc>
+tnoremap <C-v><Esc> <Esc>
+
+" formatage de texte retire les blancs en bout de ligne
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+" bind function to the tab key
+"inoremap <C-Tab>=SuperCleverTab()
+
+"remove many default insert mapping
+"inoremap <C-[> <nop> "don't uncomment it, disable <esc> key.
+inoremap <C-C> <nop>
+inoremap <C-@> <nop>
+inoremap <C-a> <nop>
+inoremap <C-h> <nop>
+inoremap <Del> <nop>
+inoremap <C-w> <nop>
+inoremap <C-u> <nop>
+inoremap <C-i> <nop>
+inoremap <C-j> <nop>
+"inoremap <C-m> <nop> "don't uncomment it, disable <enter> key
+inoremap <C-n> <nop>
+inoremap <C-p> <nop>
+inoremap <C-r> <nop>
+inoremap <C-r><C-r> <nop>
+inoremap <C-r><C-o> <nop>
+inoremap <C-r><C-p> <nop>
+inoremap <C-t> <nop>
+inoremap <C-d> <nop>
+inoremap <0><C-d> <nop>
+inoremap <^><C-d> <nop>
+inoremap <C-q> <nop>
+inoremap <C-M-v> <nop>
+inoremap <C-M-Q> <nop>
+inoremap <C-e> <nop>
+inoremap <C-y> <nop> 
+inoremap <C-_> <nop>
+inoremap <C-^> <nop>
+inoremap <C-]> <nop>
+inoremap <C-x><C-e> <nop>
+inoremap <C-y><C-e> <nop>
+
+" backspace in Visual mode deletes selection
+vnoremap <BS> d
+
+" CTRL-Z is Undo; not in cmdline though
+noremap <C-Z> u
+inoremap <C-Z> <C-O>u
+
+" CTRL-Y is Redo (although not repeat); not in cmdline though
+noremap <C-Y> <C-R>
+inoremap <C-Y> <C-O><C-R>
+
+"" Alt-Space is System menu
+if has("gui")
+  noremap <M-Space> :simalt ~<CR>
+  inoremap <M-Space> <C-O>:simalt ~<CR>
+  cnoremap <M-Space> <C-C>:simalt ~<CR>
+endif
+
+" CTRL-A is Select all
+"noremap <C-A> gggH<C-O>G
+"inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
+"cnoremap <C-A> <C-C>gggH<C-O>G
+"onoremap <C-A> <C-C>gggH<C-O>G
+"snoremap <C-A> <C-C>gggH<C-O>G
+"xnoremap <C-A> <C-C>ggVG
+
+" CTRL-Tab is Next window
+noremap <C-Tab> <C-W>w
+inoremap <C-Tab> <C-O><C-W>w
+cnoremap <C-Tab> <C-C><C-W>w
+onoremap <C-Tab> <C-C><C-W>w
+
+" CTRL-F4 is Close window
+noremap <C-F4> <C-W>c
+inoremap <C-F4> <C-O><C-W>c
+cnoremap <C-F4> <C-C><C-W>c
+onoremap <C-F4> <C-C><C-W>c
+
+"if has("gui")
+"  " CTRL-F is the search dialog
+"  noremap  <expr> <C-F> has("gui_running") ? ":promptfind\<CR>" : "/"
+"  inoremap <expr> <C-F> has("gui_running") ? "\<C-\>\<C-O>:promptfind\<CR>" : "\<C-\>\<C-O>/"
+"  cnoremap <expr> <C-F> has("gui_running") ? "\<C-\>\<C-C>:promptfind\<CR>" : "\<C-\>\<C-O>/"
+"
+"  " CTRL-H is the replace dialog,
+"  " but in console, it might be backspace, so don't map it there
+"  nnoremap <expr> <C-H> has("gui_running") ? ":promptrepl\<CR>" : "\<C-H>"
+"  inoremap <expr> <C-H> has("gui_running") ? "\<C-\>\<C-O>:promptrepl\<CR>" : "\<C-H>"
+"  cnoremap <expr> <C-H> has("gui_running") ? "\<C-\>\<C-C>:promptrepl\<CR>" : "\<C-H>"
+"endif
+
+" read an empty HTML template and move cursor to title
+"nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>3jwf>a
+
+" restore 'cpoptions'
+"set cpo&
+
+" }}}
+" {{{ Mappings des plugins
+" Active NerdTree
+map <F2> :NERDTreeToggle<CR>
+
+" associe F1 à BufferExplorer, évite les erreurs
+"inoremap <F1> <ESC>
+"nnoremap <F1> <ESC>
+"vnoremap <F1> <ESC>
+nnoremap <F1> :BufExplorer<CR>
+
+" Active BufferExplorer
+nmap <leader>be :BufExplorer<cr>
+tmap <leader>be :BufExplorer<cr>
+
+" Active NerdTerm
+nmap <leader>tt <Plug>(NERDTermToggle)
+tmap <leader>tt <Plug>(NERDTermToggle)
+
+
+"imap <c-x><c-a> <Plug>(emoji-start-complete)
+" Active Goyo
+nnoremap <leader>g :Goyo<cr>
+
+"}}}
+" {{{ Autocmd format
+"augroup filetype_html
+"autocmd!
+"autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
+""fold tag in html
+"autocmd FileType html nnoremap <leader>ft Vatzf
+""Mapping pour tapper du texte français sur un clavier EN-US
+"autocmd FileType html inoremap `a à
+"autocmd FileType html inoremap `A À
+"autocmd FileType html inoremap ^a â
+"autocmd FileType html inoremap ^A Â
+"autocmd FileType html inoremap 'e é
+"autocmd FileType html inoremap 'E É
+"autocmd FileType html inoremap ^e ê
+"autocmd FileType html inoremap ^E Ê
+"autocmd FileType html inoremap `e è
+"autocmd FileType html inoremap `E È
+"autocmd FileType html inoremap ^i î
+"autocmd FileType html inoremap "o ö
+"autocmd FileType html inoremap `u ù
+"autocmd FileType html inoremap `U Ù
+"autocmd FileType html inoremap 'c ç
+"autocmd FileType html inoremap 'C Ç
+"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+"augroup END
+
+" Call method on window enter
+augroup WindowManagement
+  autocmd!
+  autocmd WinEnter * setl wincolor=Normal
+  autocmd WinLeave * setl wincolor=NormalNC
+augroup END
+
+" Always open help vertically in the far right window
+augroup vimrc_help
+  autocmd!
+  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | :vert resize 90 | endif
+augroup END
+
+"session management
+augroup SessionManagement
+  au VimEnter * nested :call LoadSession()
+  au VimLeave * :call MakeSession()
+augroup END
+
+"markdown file handling
+augroup filetype_markdown
+  au! BufNewFile,BufRead *.md.html setf markdown
+  filetype plugin on
+  autocmd BufNewFile *.md.html 0r ~/.vim/template_markdeep.md.html
+augroup END
+
+"change color of active window
+augroup ActiveWin | au!
+  au WinEnter * setl wincolor=
+  au WinLeave * setl wincolor=DimNormal
+augroup END
+
+"Goyo integration
+augroup GoyoIntegration
+  autocmd! User GoyoEnter nested call <SID>goyo_enter()
+  autocmd! User GoyoLeave nested call <SID>goyo_leave()
+augroup END
+
+"augroup filetype_css
+"autocmd!
+"" trie les tags css
+"autocmd FileType css nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+"augroup END
+
+"augroup filetype_python
+"autocmd!
+" active l'auto-complétion pour certain fichiers, à lancer avec CTRL-X O
+"python command - should be in another file.
+"$ ctags -R -f ~/.vim/tags/python.ctags /usr/lib/python2.5/
+" :autocmd BufWritePost * call system("ctags -R")
+"set tags+=$HOME/.vim/tags/python.ctags
+"autocmd FileType python set omnifunc=pythoncomplete#Complete
+"autocmd FileType python highlight Excess ctermbg=DarkGrey guibg=Black
+"autocmd FileType python match Excess /\%80v.%/
+"augroup END
+
+"augroup filetype_javascript
+"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+"set suffixesadd+=.js
+"augroup END
+
+"git syntax highlight
+autocmd BufNewFile,BufRead COMMIT_EDITMSG set filetype=gitcommit
+
+"glsl syntax highlight
+"augroup filetype_glsl
+"autocmd BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl setf glsl 
+"augroup END
+" }}}
+"{{{ groff utilities
+au BufWritePost,BufFilePost *.ms !groff -ms % -Tpdf > %:r.pdf
+au BufWritePost,BufFilePost *.me !tbl % | groff -me -Tpdf > %:r.pdf
+au BufWritePost,BufFilePost *.pic !groff -p % -Tpdf > %:r.pdf
+
+"}}}
+" see help modeline for explanation on the line below
+" vim: set foldmethod=marker foldmarker={{{,}}} foldlevel=0 :

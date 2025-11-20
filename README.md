@@ -35,17 +35,17 @@ texte étendent chaque jour un peu plus les possibilités de cette plate-forme.
 Dans l'ordre:
 - L'environnement de base, le shell (bash), et la communication inter-processus.
 - traitement de texte - le règne de la ligne de commande.
-- * outils pour analyser le texte (head, tail, cut, sort, etc.)
-- * outils fournissant des informations (ls, pwd, etc.), et tous les outils en ligne de commande
+  * outils pour analyser le texte (head, tail, cut, sort, etc.)
+  * outils fournissant des informations (ls, pwd, etc.), et tous les outils en ligne de commande
 - édition de texte - l'éditeur VI.
-- * édition de base
-- * Commande g et s
-- * intégration avec le shell
+  * édition de base
+  * Commande g et s
+  * intégration avec le shell
 - L'interaction avec le texte: Terminal et TUI.
-- * le terminal tty et ses code de mise en page
-- * l'intégration et l'utilisation de police de caractère Unicode pour étendre l'affichage au dela de l'alphabet.
-- * quelques outils TUI (mc, mail, etc.)
-- * développer ses propres outils avec python et/ou perl
+  * le terminal tty et ses code de mise en page
+  * l'intégration et l'utilisation de police de caractère Unicode pour étendre l'affichage au dela de l'alphabet.
+  * quelques outils TUI (mc, mail, etc.)
+  * développer ses propres outils avec python et/ou perl
 - Outils avancé, la mise en page de texte avec Groff.
 
 La force d'un éditeur comme Vi est sa totale intégration avec l'ensemble.
