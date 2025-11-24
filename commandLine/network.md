@@ -5,6 +5,10 @@
 * DHCP - Dynamic Host Configuration Protocol - allocation dynamique d'addresse IP.
 * Routeur - périphérique permettant la communication inter-réseaux.
 
+Cours théorique de bonne facture:
+https://zestedesavoir.com/tutoriels/2789/les-reseaux-de-zero/
+https://irp.nain-t.net/doku.php/start
+
 
 ## nmcli - commande de haut niveau, en dehors des interfaces graphiques, pour les machines desktop
 

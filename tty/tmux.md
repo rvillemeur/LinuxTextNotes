@@ -1,4 +1,6 @@
-# tmux
+# tmux et multiplexeur de terminaux
+
+https://linuxfr.org/news/interminable-liste-de-terminaux
 
 ## introduction
 
