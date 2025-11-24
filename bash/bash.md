@@ -146,7 +146,7 @@ https://tldp.org/LDP/Bash-Beginners-Guide/html/index.html
 
 ## Philosophie des outils et intégration entre programmes
 
-La philosophie des outils Unix se résume [ainsi](https://en.wikipedia.org/wiki/Unix_philosophy):
+La philosophie des outils Unix se résume [ainsi](https://en.wikipedia.org/wiki/Unix_philosophy) :
 
 1. Chaque programme ne doit faire qu'une seule chose et bien le faire, plutôt 
    que d'ajouter des fonctionnalités à un programme existant.
