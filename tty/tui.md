@@ -1,4 +1,4 @@
-# TUI - Text User Interface
+# TUI - Text User Interface or Terminal User Interface
 
 ## introduction
 
@@ -12,6 +12,13 @@ glyphes satisfaisant beaucoup de besoin d'illustration, telle que la police
 Les fenêtres des applications textuelles étaient historiquement affichés grâce 
 aux glyphes [*Box Drawing*](https://en.wikipedia.org/wiki/Box-drawing_characters).
 
+Plutot qu'interface utilisateur en mode texte, il serait plus approprié de
+parler d'interface utilisateur en mode Terminal. On quitte la simplicité
+d'échange de la *ligne de commande*. Ce genre d'interface a en revanche toute son
+utilité pour intéragir en affichant l'information et en permettant d'intéragir
+avec qui permettent aux humains que nous sommes de mieux l'appréhender. Si on
+affiche plusieurs champs, on perd en efficacité pour le traitement textuel, on
+gagne en convivialité sur la représentation de l'information.
 
 ## Multiplexeur de terminaux
 

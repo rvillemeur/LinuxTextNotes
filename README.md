@@ -16,13 +16,9 @@ Les interfaces graphiques ont montré leur utilité pour plusieurs outils:
 - analyse audio
 - exploration graphique
 
-Les graphiques chatoyant et colorés, la facilité d'interaction avec la souris,
-offrent une façon ludique d'utiliser un ordinateur.  Le succès ne se dément pas
-depuis l'introduction de l'Apple Lisa en 1983, Apple Macintosh en 1984, et
-l'explosion de Windows 3.1 en 1992.  Le Web avec ses pages multi-couleurs, ses
-graphismes interactifs et son environnement distribué offre également une
-plate-forme attractive depuis son exposition au grand public pendant les années
-1990.
+Cependant, pour le traitment du texte et l'adminstration système, la ligne de commande reste irremplaçable
+
+Les graphiques chatoyant et colorés, la facilité d'interaction avec la souris, offrent une façon ludique d'utiliser un ordinateur.  Le succès ne se dément pas depuis l'introduction de l'Apple Lisa en 1983, Apple Macintosh en 1984, et l'explosion de Windows 3.1 en 1992.  Le Web avec ses pages multi-couleurs, ses graphismes interactifs et son environnement distribué offre également une plate-forme attractive depuis son exposition au grand public pendant les années 1990.
 
 Cependant, pour les opérations de base, comme le traitement de texte, un
 tableur, le courriel, les forums de discussions instantanées, en bref, toutes
@@ -34,19 +30,21 @@ texte étendent chaque jour un peu plus les possibilités de cette plate-forme.
 
 Dans l'ordre:
 - L'environnement de base, le shell (bash), et la communication inter-processus.
-- traitement de texte - le règne de la ligne de commande.
+- traitement de texte et administration système - le règne de la ligne de commande.
   * outils pour analyser le texte (head, tail, cut, sort, etc.)
+  * outils système (rpm, réseaux, son, utilisateur/groupes, container, affichage, bureau, etc.)
   * outils fournissant des informations (ls, pwd, etc.), et tous les outils en ligne de commande
+  * Outils avancé, la mise en page de texte avec Groff.
+- L'interaction avec le texte: Terminal et TUI.
+  * le terminal tty et ses code de mise en page
+  * l'intégration et l'utilisation de police de caractère Unicode pour étendre l'affichage au dela de l'alphabet.
 - édition de texte - l'éditeur VI.
   * édition de base
   * Commande g et s
   * intégration avec le shell
-- L'interaction avec le texte: Terminal et TUI.
-  * le terminal tty et ses code de mise en page
-  * l'intégration et l'utilisation de police de caractère Unicode pour étendre l'affichage au dela de l'alphabet.
+- Outils TUI avancé et développement de ses propres outils
   * quelques outils TUI (mc, mail, etc.)
   * développer ses propres outils avec python et/ou perl
-- Outils avancé, la mise en page de texte avec Groff.
 
 La force d'un éditeur comme Vi est sa totale intégration avec l'ensemble.
 Outre le fait qu'il utilise les codes consoles pour permettre une affichage
