@@ -4,6 +4,7 @@
 https://tldp.org/LDP/abs/html/parameter-substitution.html
 https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html
 
+
 ## ecriture de test
 
 Les tests peuvent s'écrire à l'aide des commandes et operateurs suivants:
@@ -60,6 +61,20 @@ https://mywiki.wooledge.org/BashFAQ/031
 <           [[ az < za ]] && echo "az comes before za"
 = (or ==)   [[ a = a ]] && echo "a equals a"
 !=          [[ a != b ]] && echo "a is not equal to b"
+-z "la chaine est null"
+-n "la chaine n'est pas null"
+
+La sustitution de paramètre permet de faire des opérations de bases sur les chaînes de caractères:
+
+`${#parameter}` renvoie le nombre de charactère de la chaîne.
+`${parameter@operator}` modifie la chaine de charactère *parameter*
+
+* U : convertit un majuscule
+* u : convertit le premier caractère en majuscule
+* L : convertit en minuscule
+* Q : Ajoute des quote à la chaîne de caractère pour l'utiliser comme input.
+*
+
 
 ###integer comparison
 
@@ -72,8 +87,9 @@ https://mywiki.wooledge.org/BashFAQ/031
 
 ###conditional evaluation
 
-&&           [[ -n $var && -f $var ]] && echo "$var is a file"
-||           [[ -b $var || -c $var ]] && echo "$var is a device"
+&& ou -a   [[ -n $var && -f $var ]] && echo "$var is a file"
+|| ou -o   [[ -b $var || -c $var ]] && echo "$var is a device"
+
 
 ### expression grouping
 
