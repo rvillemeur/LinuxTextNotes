@@ -18,6 +18,8 @@ Les interfaces graphiques ont montré leur utilité pour plusieurs outils:
 
 Cependant, pour le traitment du texte et l'adminstration système, la ligne de commande reste irremplaçable
 
+Le design des interfaces modernes permet aux utilisateurs de se passer de quelques heures d’apprentissage des outils équivalents en ligne de commande. Cependant, ces outils permettent d'élaborer un modèle mental de ce qu'il font et de la tache à résoude, ce que les interfaces graphiques ne permettent pas ou moins.
+
 Les graphiques chatoyant et colorés, la facilité d'interaction avec la souris, offrent une façon ludique d'utiliser un ordinateur.  Le succès ne se dément pas depuis l'introduction de l'Apple Lisa en 1983, Apple Macintosh en 1984, et l'explosion de Windows 3.1 en 1992.  Le Web avec ses pages multi-couleurs, ses graphismes interactifs et son environnement distribué offre également une plate-forme attractive depuis son exposition au grand public pendant les années 1990.
 
 Cependant, pour les opérations de base, comme le traitement de texte, un
@@ -27,6 +29,8 @@ revèle, plusieurs décennie après leur introduction, remarquablement adapté e
 capable de suivre l'évolution des pratiques. L'introduction de police de
 caractère unicode pour illustrer, les logiciels développés uniquement en mode
 texte étendent chaque jour un peu plus les possibilités de cette plate-forme.
+
+Un éditeur de texte comme Vim, devient, une fois la période ardue d'apprentissage passée, une extension des doigts, et permet d'intéragir avec le texte quasiment sans y penser.
 
 Dans l'ordre:
 - L'environnement de base, le shell (bash), et la communication inter-processus.

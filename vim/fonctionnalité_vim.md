@@ -48,7 +48,7 @@
 
 ##5. Option de commande
 ##6. Onglet multiple (Tab management)
-##7. Gestion des fenêtres.
+##7. Gestion des fenêtres (window).
 :aboveleft	:abo[veleft]	make split window appear left or above
 :all		:al[l]		open a window for each file in the argument list
 :belowright	:bel[owright]	make split window appear right or below
@@ -65,6 +65,11 @@
 :sbrewind	:sbr[ewind]	split window and go to first file in the buffer list
 :sprevious	:spr[evious]	split window and go to previous file in the argument list
 :srewind	:sre[wind]	split window and go to first file in the argument list
+:drop		:dr[op]		jump to window editing file or edit file in current window
+:horizontal	:hor[izontal]	following window command work horizontally
+:isplit	:isp[lit]	split window and jump to definition of identifier
+:leftabove	:lefta[bove]	make split window appear left or above
+:loadview	:lo[adview]	load view for current window from a file
 
 ###7.1 Modeline
 
@@ -104,6 +109,43 @@
 :crewind	:cr[ewind]	go to the specified error, default first one
 :cwindow	:cw[indow]	open or close quickfix window
 
+### location window
+:lbottom	:lbo[ttom]	scroll to the bottom of the location window
+:llist	:lli[st]	list all locations
+:lhistory	:lhi[story]	list the location lists
+:ll		:ll		go to specific location
+:llast	:lla[st]	go to the specified location, default last one
+:lnext	:lne[xt]	go to next location
+:lnewer	:lnew[er]	go to newer location list
+:lnfile	:lnf[ile]	go to first location in next file
+:lhelpgrep	:lh[elpgrep]	like ":helpgrep" but uses location list
+:lNext	:lN[ext]	go to previous entry in location list
+:labove	:lab[ove]	go to location above current line
+:laddfile	:laddf[ile]	add locations to current location list
+:lafter	:laf[ter]	go to location after current cursor
+:lbefore	:lbef[ore]	go to location before current cursor
+:lbelow	:lbel[ow]	go to location below current line
+:lcscope	:lcs[cope]	like ":cscope" but uses location list
+:ldo		:ld[o]		execute command in valid location list entries
+:lfdo		:lfd[o]		execute command in each file in location list
+:lbuffer	:lb[uffer]	parse locations and jump to first location
+:laddexpr	:lad[dexpr]	add locations from expr
+:laddbuffer	:laddb[uffer]	add locations from buffer
+:lexpr	:lex[pr]	read locations from expr and jump to first
+:lfile	:lf[ile]	read file with locations and jump to first
+:lfirst	:lfir[st]	go to the specified location, default first one
+:lgetbuffer	:lgetb[uffer]	get locations from buffer
+:lgetexpr	:lgete[xpr]	get locations from expr
+:lgetfile	:lg[etfile]	read file with locations
+:lolder	:lol[der]	go to older location list
+:lopen	:lope[n]	open location window
+:lprevious	:lp[revious]	go to previous location
+:lpfile	:lpf[ile]	go to last location in previous file
+:lrewind	:lr[ewind]	go to the specified location, default first one
+:ltag		:lt[ag]		jump to tag and add matching tags to the location list
+:lwindow	:lw[indow]	open or close location window
+:lclose	:lcl[ose]	close location window
+
 ###7.3 commande line 
 ##8. Édition de fichiers et de buffers multiples.
 :args		:ar[gs]		print the argument list
@@ -135,6 +177,7 @@
 :checkpath	:che[ckpath]	list included files
 :checktime	:checkt[ime]	check timestamp of loaded buffers
 :browse	:bro[wse]	use file selection dialog
+
 ##9. Folding
 :fold		:fo[ld]		create a fold
 :foldclose	:foldc[lose]	close folds
@@ -143,7 +186,6 @@
 :foldopen	:foldo[pen]	open folds
 
 ##10. scripting
-
 :break	:brea[k]	break out of while loop
 :breakadd	:breaka[dd]	add a debugger breakpoint
 :breakdel	:breakd[el]	delete a debugger breakpoint
@@ -187,6 +229,36 @@
 :execute	:exe[cute]	execute result of expressions
 :exit		:exi[t]		same as ":xit"
 :export	:exp[ort]	Vim9: export an item from a script
+:scriptnames	:scr[iptnames]	list names of all sourced Vim scripts
+:scriptencoding :scripte[ncoding]  encoding used in sourced Vim script
+:scriptversion  :scriptv[ersion]   version of Vim script used
+
+### python sripting
+:py3		:py3		execute Python 3 command
+:python3	:python3	same as :py3
+:py3do	:py3d[o]	execute Python 3 command for each line
+:py3file	:py3f[ile]	execute Python 3 script file
+:python	:py[thon]	execute Python command
+:pydo		:pyd[o]		execute Python command for each line
+:pyfile	:pyf[ile]	execute Python script file
+:pyx		:pyx		execute python_x command
+:pythonx	:pythonx	same as :pyx
+:pyxdo	:pyxd[o]	execute python_x command for each line
+:pyxfile	:pyxf[ile]	execute python_x script file
+
+### lua scriptiong
+:lua		:lua		execute Lua command
+:luado	:luad[o]	execute Lua command for each line
+:luafile	:luaf[ile]	execute Lua script file
+
+### perl scripting
+:perldo	:perld[o]	execute Perl command for each line
+:perl		:pe[rl]		execute Perl command
+
+### ruby scripting
+:ruby		:rub[y]		execute Ruby command
+:rubydo	:rubyd[o]	execute Ruby command for each line
+:rubyfile	:rubyf[ile]	execute Ruby script file
 
 ##11. autocmd
 :autocmd	:au[tocmd]	enter or show autocommands
@@ -229,15 +301,7 @@
 :compiler	:comp[iler]	do settings for a specific compiler
 :cscope	:cs[cope]	execute cscope command
 :cstag	:cst[ag]	use cscope to jump to a tag
-:lhelpgrep	:lh[elpgrep]	like ":helpgrep" but uses location list
-:lhistory	:lhi[story]	list the location lists
-:ll		:ll		go to specific location
-:llast	:lla[st]	go to the specified location, default last one
-:llist	:lli[st]	list all locations
 :lmake	:lmak[e]	execute external command 'makeprg' and parse error messages
-:lnext	:lne[xt]	go to next location
-:lnewer	:lnew[er]	go to newer location list
-:lnfile	:lnf[ile]	go to first location in next file
 
 ##19. Marks
 :delmarks	:delm[arks]	delete marks
@@ -259,21 +323,42 @@
 
 ##22. registers
 :display	:di[splay]	display registers
+:put		:pu[t]		insert contents of register in the text
+:redir	:redi[r]	redirect messages to a file or register
+:registers	:reg[isters]	display the contents of registers
+:yank		:y[ank]		yank lines into a register
 
+##23. spell checking
+:mkspell	:mksp[ell]	produce .spl spell file
+:spelldump	:spelld[ump]	split window and fill with all correct words
+:spellgood	:spe[llgood]	add good word for spelling
+:spellinfo	:spelli[nfo]	show info about loaded spell files
+:spellrare	:spellra[re]	add rare word for spelling
+:spellrepall	:spellr[epall]	replace all bad words like last z=
+:spellundo	:spellu[ndo]	remove good or bad word
+:spellwrong	:spellw[rong]	add spelling mistake
+
+##24. internal help system
+:help		:h[elp]		open a help window
+:helpclose	:helpc[lose]	close one help window
+:helpfind	:helpf[ind]	dialog to open a help window
+:helpgrep	:helpg[rep]	like ":grep" but searches help files
+:helptags	:helpt[ags]	generate help tags for a directory
+
+
+## not sorted yet
 :cquit	:cq[uit]	quit Vim with an error code
 
 :digraphs	:dig[raphs]	show or enter digraphs
 :dl		:dl		short for :delete with the 'l' flag
 :dlist	:dli[st]	list #defines
 :dp		:d[elete]p	short for :delete with the 'p' flag
-:drop		:dr[op]		jump to window editing file or edit file in current window
 :dsearch	:ds[earch]	list one #define
 :dsplit	:dsp[lit]	split window and jump to #define
 :edit		:e[dit]		edit a file
 :earlier	:ea[rlier]	go to older change, undo
 :emenu	:em[enu]	execute a menu by name
 :enew		:ene[w]		edit a new, unnamed buffer
-
 :ex		:ex		same as ":edit"
 :exusage	:exu[sage]	overview of Ex commands
 :file		:f[ile]		show or set the current file name
@@ -290,17 +375,10 @@
 :gui		:gu[i]		start the GUI
 :gvim		:gv[im]		start the GUI
 :hardcopy	:ha[rdcopy]	send text to the printer
-:help		:h[elp]		open a help window
-:helpclose	:helpc[lose]	close one help window
-:helpfind	:helpf[ind]	dialog to open a help window
-:helpgrep	:helpg[rep]	like ":grep" but searches help files
-:helptags	:helpt[ags]	generate help tags for a directory
 :highlight	:hi[ghlight]	specify highlighting methods
 :hide		:hid[e]		hide current buffer for a command
 :history	:his[tory]	print a history list
-:horizontal	:hor[izontal]	following window command work horizontally
 :insert	:i[nsert]	insert text
-
 :iabclear	:iabc[lear]	like ":abclear" but for Insert mode
 :if		:if		execute commands when condition met
 :ijump	:ij[ump]	jump to definition of identifier
@@ -313,7 +391,6 @@
 :inoremenu	:inoreme[nu]	like ":noremenu" but for Insert mode
 :intro	:int[ro]	print the introductory message
 :isearch	:is[earch]	list one line where identifier matches
-:isplit	:isp[lit]	split window and jump to definition of identifier
 :iunmap	:iu[nmap]	like ":unmap" but for Insert mode
 :iunmenu	:iunme[nu]	remove menu for Insert mode
 :join		:j[oin]		join lines
@@ -323,60 +400,28 @@
 :keepmarks	:kee[pmarks]	following command keeps marks where they are
 :keepjumps	:keepj[umps]	following command keeps jumplist and marks
 :keeppatterns	:keepp[atterns]	following command keeps search pattern history
-:lNext	:lN[ext]	go to previous entry in location list
 :lNfile	:lNf[ile]	go to last entry in previous file
 :list		:l[ist]		print lines
-:labove	:lab[ove]	go to location above current line
-:laddexpr	:lad[dexpr]	add locations from expr
-:laddbuffer	:laddb[uffer]	add locations from buffer
-:laddfile	:laddf[ile]	add locations to current location list
-:lafter	:laf[ter]	go to location after current cursor
 :last		:la[st]		go to the last file in the argument list
 :language	:lan[guage]	set the language (locale)
 :later	:lat[er]	go to newer change, redo
-:lbefore	:lbef[ore]	go to location before current cursor
-:lbelow	:lbel[ow]	go to location below current line
-:lbottom	:lbo[ttom]	scroll to the bottom of the location window
-:lbuffer	:lb[uffer]	parse locations and jump to first location
 :lcd		:lc[d]		change directory locally
 :lchdir	:lch[dir]	change directory locally
-:lclose	:lcl[ose]	close location window
-:lcscope	:lcs[cope]	like ":cscope" but uses location list
-:ldo		:ld[o]		execute command in valid location list entries
-:lfdo		:lfd[o]		execute command in each file in location list
 :left		:le[ft]		left align lines
-:leftabove	:lefta[bove]	make split window appear left or above
 :legacy	:leg[acy]	make following command use legacy script syntax
 :let		:let		assign a value to a variable or option
-:lexpr	:lex[pr]	read locations from expr and jump to first
-:lfile	:lf[ile]	read file with locations and jump to first
-:lfirst	:lfir[st]	go to the specified location, default first one
-:lgetbuffer	:lgetb[uffer]	get locations from buffer
-:lgetexpr	:lgete[xpr]	get locations from expr
-:lgetfile	:lg[etfile]	read file with locations
 :lgrep	:lgr[ep]	run 'grepprg' and jump to first match
 :lgrepadd	:lgrepa[dd]	like :grep, but append to current list
 :lmap		:lm[ap]		like ":map!" but includes Lang-Arg mode
 :lmapclear	:lmapc[lear]	like ":mapclear!" but includes Lang-Arg mode
 :lnoremap	:ln[oremap]	like ":noremap!" but includes Lang-Arg mode
 :loadkeymap	:loadk[eymap]	load the following keymaps until EOF
-:loadview	:lo[adview]	load view for current window from a file
 :lockmarks	:loc[kmarks]	following command keeps marks where they are
 :lockvar	:lockv[ar]	lock variables
-:lolder	:lol[der]	go to older location list
-:lopen	:lope[n]	open location window
-:lprevious	:lp[revious]	go to previous location
-:lpfile	:lpf[ile]	go to last location in previous file
-:lrewind	:lr[ewind]	go to the specified location, default first one
 :ls		:ls		list all buffers
-:ltag		:lt[ag]		jump to tag and add matching tags to the location list
 :lunmap	:lu[nmap]	like ":unmap!" but includes Lang-Arg mode
-:lua		:lua		execute Lua command
-:luado	:luad[o]	execute Lua command for each line
-:luafile	:luaf[ile]	execute Lua script file
 :lvimgrep	:lv[imgrep]	search for pattern in files
 :lvimgrepadd	:lvimgrepa[dd]	like :vimgrep, but append to current list
-:lwindow	:lw[indow]	open or close location window
 :move		:m[ove]		move lines
 :mark		:ma[rk]		set a mark
 :make		:mak[e]		execute external command 'makeprg' and parse
@@ -390,7 +435,6 @@
 :messages	:mes[sages]	view previously displayed messages
 :mkexrc	:mk[exrc]	write current mappings and settings to a file
 :mksession	:mks[ession]	write session info to a file
-:mkspell	:mksp[ell]	produce .spl spell file
 :mkvimrc	:mkv[imrc]	write current mappings and settings to a file
 :mkview	:mkvie[w]	write view of current window to a file
 :mode		:mod[e]		show or change the screen mode
@@ -407,8 +451,7 @@
 :nnoremap	:nn[oremap]	like ":noremap" but for Normal mode
 :nnoremenu	:nnoreme[nu]	like ":noremenu" but for Normal mode
 :noremap	:no[remap]	enter a mapping that will not be remapped
-:nohlsearch	:noh[lsearch]	suspend 'hlsearch' highlighting
-				remapped
+:nohlsearch	:noh[lsearch]	suspend 'hlsearch' highlighting remapped
 :noremenu	:noreme[nu]	enter a menu that will not be remapped
 :normal	:norm[al]	execute Normal mode commands
 :noswapfile	:nos[wapfile]	following commands don't create a swap file
@@ -431,13 +474,11 @@
 :packloadall	:packl[oadall]	load all packages under 'packpath'
 :pclose	:pc[lose]	close preview window
 :pedit	:ped[it]	edit file in the preview window
-:perl		:pe[rl]		execute Perl command
 :print	:p[rint]	print lines
 :profdel	:profd[el]	stop profiling a function or script
 :profile	:prof[ile]	profiling functions and scripts
 :promptfind	:pro[mptfind]	open GUI dialog for searching
 :promptrepl	:promptr[epl]	open GUI dialog for search/replace
-:perldo	:perld[o]	execute Perl command for each line
 :pop		:po[p]		jump to older entry in tag stack
 :popup	:popu[p]	popup a menu by name
 :ppop		:pp[op]		":pop" in preview window
@@ -454,89 +495,56 @@
 :ptrewind	:ptr[ewind]	:trewind in preview window
 :ptselect	:pts[elect]	:tselect and show tag in preview window
 :public	:public		prefix for a class or object member
-:put		:pu[t]		insert contents of register in the text
 :pwd		:pw[d]		print current directory
-:py3		:py3		execute Python 3 command
-:python3	:python3	same as :py3
-:py3do	:py3d[o]	execute Python 3 command for each line
-:py3file	:py3f[ile]	execute Python 3 script file
-:python	:py[thon]	execute Python command
-:pydo		:pyd[o]		execute Python command for each line
-:pyfile	:pyf[ile]	execute Python script file
-:pyx		:pyx		execute python_x command
-:pythonx	:pythonx	same as :pyx
-:pyxdo	:pyxd[o]	execute python_x command for each line
-:pyxfile	:pyxf[ile]	execute python_x script file
 :quit		:q[uit]		quit current window (when one window quit Vim)
 :quitall	:quita[ll]	quit Vim
 :qall		:qa[ll]		quit Vim
 :read		:r[ead]		read file into the text
 :recover	:rec[over]	recover a file from a swap file
 :redo		:red[o]		redo one undone change
-:redir	:redi[r]	redirect messages to a file or register
 :redraw	:redr[aw]	  force a redraw of the display
 :redrawstatus	:redraws[tatus]	  force a redraw of the status line(s)
 :redrawtabline  :redrawt[abline]  force a redraw of the tabline
-:registers	:reg[isters]	display the contents of registers
 :resize	:res[ize]	change current window height
 :retab	:ret[ab]	change tab size
 :return	:retu[rn]	return from a user function
 :rewind	:rew[ind]	go to the first file in the argument list
 :right	:ri[ght]	right align text
 :rightbelow	:rightb[elow]	make split window appear right or below
-:ruby		:rub[y]		execute Ruby command
-:rubydo	:rubyd[o]	execute Ruby command for each line
-:rubyfile	:rubyf[ile]	execute Ruby script file
 :rundo	:rund[o]	read undo information from a file
 :runtime	:ru[ntime]	source vim scripts in 'runtimepath'
 :rviminfo	:rv[iminfo]	read from viminfo file
 :substitute	:s[ubstitute]	find and replace text
-:sNext	:sN[ext]	split window and go to previous file in
-				argument list
+:sNext	:sN[ext]	split window and go to previous file in argument list
 :sandbox	:san[dbox]	execute a command in the sandbox
-:sargument	:sa[rgument]	split window and go to specific file in
-				argument list
+:sargument	:sa[rgument]	split window and go to specific file in argument list
 :sall		:sal[l]		open a window for each file in argument list
 :saveas	:sav[eas]	save file under another name.
-:scriptnames	:scr[iptnames]	list names of all sourced Vim scripts
-:scriptencoding :scripte[ncoding]  encoding used in sourced Vim script
-:scriptversion  :scriptv[ersion]   version of Vim script used
 :scscope	:scs[cope]	split window and execute cscope command
 :set		:se[t]		show or set options
 :setfiletype	:setf[iletype]	set 'filetype', unless it was set already
 :setglobal	:setg[lobal]	show global values of options
 :setlocal	:setl[ocal]	show or set options locally
 :sfind	:sf[ind]	split current window and edit file in 'path'
-:sfirst	:sfir[st]	split window and go to first file in the
-				argument list
+:sfirst	:sfir[st]	split window and go to first file in the argument list
 :shell	:sh[ell]	escape to a shell
 :simalt	:sim[alt]	Win32 GUI: simulate Windows ALT key
 :sign		:sig[n]		manipulate signs
 :silent	:sil[ent]	run a command silently
 :sleep	:sl[eep]	do nothing for a few seconds
-:sleep!	:sl[eep]!	do nothing for a few seconds, without the
-				cursor visible
-:slast	:sla[st]	split window and go to last file in the
-				argument list
+:sleep!	:sl[eep]!	do nothing for a few seconds, without the cursor visible
+:slast	:sla[st]	split window and go to last file in the argument list
 :smagic	:sm[agic]	:substitute with 'magic'
 :smap		:smap		like ":map" but for Select mode
 :smapclear	:smapc[lear]	remove all mappings for Select mode
 :smenu	:sme[nu]	add menu for Select mode
 :smile	:smi[le]	make the user happy
-:snext	:sn[ext]	split window and go to next file in the
-				argument list
+:snext	:sn[ext]	split window and go to next file in the argument list
 :snomagic	:sno[magic]	:substitute with 'nomagic'
 :snoremap	:snor[emap]	like ":noremap" but for Select mode
 :snoremenu	:snoreme[nu]	like ":noremenu" but for Select mode
 :sort		:sor[t]		sort lines
 :source	:so[urce]	read Vim or Ex commands from a file
-:spelldump	:spelld[ump]	split window and fill with all correct words
-:spellgood	:spe[llgood]	add good word for spelling
-:spellinfo	:spelli[nfo]	show info about loaded spell files
-:spellrare	:spellra[re]	add rare word for spelling
-:spellrepall	:spellr[epall]	replace all bad words like last z=
-:spellundo	:spellu[ndo]	remove good or bad word
-:spellwrong	:spellw[rong]	add spelling mistake
 :split	:sp[lit]	split current window
 :stop		:st[op]		suspend the editor or escape to a shell
 :stag		:sta[g]		split window and jump to a tag
@@ -584,8 +592,7 @@
 :terminal	:ter[minal]	open a terminal window
 :tfirst	:tf[irst]	jump to first matching tag
 :throw	:th[row]	throw an exception
-:tjump	:tj[ump]	like ":tselect", but jump directly when there
-				is only one match
+:tjump	:tj[ump]	like ":tselect", but jump directly when there is only one match
 :tlast	:tl[ast]	jump to last matching tag
 :tlmenu	:tlm[enu]	add menu for Terminal-Job mode
 :tlnoremenu	:tln[oremenu]	like ":noremenu" but for Terminal-Job mode
@@ -605,8 +612,7 @@
 :undo		:u[ndo]		undo last change(s)
 :undojoin	:undoj[oin]	join next change with previous undo block
 :undolist	:undol[ist]	list leafs of the undo tree
-:unhide	:unh[ide]	open a window for each loaded file in the
-				buffer list
+:unhide	:unh[ide]	open a window for each loaded file in the buffer list
 :unlet	:unl[et]	delete variable
 :unlockvar	:unlo[ckvar]	unlock variables
 :unmap	:unm[ap]	remove mapping
@@ -636,17 +642,14 @@
 :vunmenu	:vunme[nu]	remove menu for Visual+Select mode
 :windo	:windo		execute command in each window
 :write	:w[rite]	write to a file
-:wNext	:wN[ext]	write to a file and go to previous file in
-				argument list
+:wNext	:wN[ext]	write to a file and go to previous file in argument list
 :wall		:wa[ll]		write all (changed) buffers
 :while	:wh[ile]	execute loop for as long as condition met
 :winsize	:wi[nsize]	get or set window size (obsolete)
 :wincmd	:winc[md]	execute a Window (CTRL-W) command
 :winpos	:winp[os]	get or set window position
-:wnext	:wn[ext]	write to a file and go to next file in
-				argument list
-:wprevious	:wp[revious]	write to a file and go to previous file in
-				argument list
+:wnext	:wn[ext]	write to a file and go to next file in argument list
+:wprevious	:wp[revious]	write to a file and go to previous file in argument list
 :wq		:wq		write to a file and quit window or Vim
 :wqall	:wqa[ll]	write all changed buffers and quit Vim
 :wundo	:wu[ndo]	write undo information to a file
@@ -661,9 +664,7 @@
 :xnoremenu	:xnoreme[nu]	like ":noremenu" but for Visual mode
 :xunmap	:xu[nmap]	like ":unmap" but for Visual mode
 :xunmenu	:xunme[nu]	remove menu for Visual mode
-:yank		:y[ank]		yank lines into a register
 :z		:z		print some lines
 :~		:~		repeat last ":substitute"
 
 
- vim:tw=78:ts=8:noet:ft=help:norl:
