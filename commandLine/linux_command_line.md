@@ -146,7 +146,6 @@ define the interactions beyond that.
 # admin system
 
 ## autres outils disponible selon les paquets
-### gestion de reseau - ipconfig2 et consort
 
 ### gestion des mots de passe: https://www.passwordstore.org/
 

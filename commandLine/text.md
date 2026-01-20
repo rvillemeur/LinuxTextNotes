@@ -13,11 +13,11 @@ Parmis les outils disponible:
 * head (affichage des premières lignes d'un fichier)
 * iconv/uconv (conversion entre encodage de texte)
 * join (fusion de 2 fichiers possédant un champ de donnée en commun)
-* paste
+* paste (fusion de 2 ou plusieurs fichier en integrant les champs d'une même ligne ensemble)
 * sed (Stream Editor - permet de modifier un texte en mode batch).
 * sort (trier le contenu d'un texte)
 * string (extrait les chaines de caractères imprimable d'un fichier)
 * tail (affichage des dernières lignes d'un fichier)
-* tee (démultiplication des sorties de données entre fichier).
+* tee (démultiplication des sorties de données entre fichier et STDOUT).
 * tr (remplace dynamiquement des caractères par d'autre).
 * wc (word count - fournis des statistique sur un fichier)
