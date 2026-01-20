@@ -8,6 +8,13 @@
 Vim est un éditeur de texte bien intégré dans le terminal et avec l'environnement unix
 Emacs est un environnement d'édition de contenu textuel. Il replace plusieurs outils
 
+# Notion
+* fichier (pour lire, écrire, stocker l'information)
+* ligne de commande
+* IPC avec le '|' et le transfert d'information par flux de texte (text stream).
+* bash comme lanceur de ligne de commande, et les macros pour étendre les arguments.
+* terminal pour l'affichage du texte, et l'introduction des application avec une TUI. 
+
 # introduction
 La ligne de commande est l'outils fondamental permettant de piloter un ordinateur.
 
