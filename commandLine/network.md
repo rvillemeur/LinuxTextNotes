@@ -9,6 +9,29 @@ Cours théorique de bonne facture:
 https://zestedesavoir.com/tutoriels/2789/les-reseaux-de-zero/
 https://irp.nain-t.net/doku.php/start
 
+Au niveau du routeur - affectation de l'adresse IP.
+1. Adresse de la passerelle (gateway) vers l'extérieur (192.168.0.1)
+2. Plage d'adresse DHCP (192.168.0.10 -> 192.168.0.200) pour pouvoir connecter 190 machines.
+3. Masque de sous réseaux (255.255.255.0) -> 1 réseau autorisant 254 machines (en théorie) 
+
+Chaque composant réseau peut être identifié par son adresse MAC, au niveau matériel.
+
+Le routeur fournis aussi l'adresse du serveur de nom (DNS): 192.168.0.200 (PiHole dans mon cas).
+Pas de zone démilitarisé définis dans mon LAN (DMZ)
+Pas de port forwarding définis non plus (pas d'usage car pas de connection de l'externe).
+
+Pour une machine connecté sur ce réseau:
+1. Adresse attribué par DHCP (192.168.0.21)
+2. Masque de sous-réseaux (255.255.255.0)
+3. Default gateway (192.168.0.1)
+
+Partie fixe pour chaque adresse: 192.168.0.X
+Partie variable pour chaque appareil: X.X.X.21.
+
+Si je met comme masque 255.255.255.128, je découpe mon réseau au 2 réseaux distincts.
+Il ne pourront plus communiquer directement par un communateur (switch), il faudra obligatoirement passer par un routeur qui servira de passerelle (gateway).
+Les routeurs fournis par les box internet font aussi office de pare-feu (firewall), permettant de bloquer tout ou partie du traffic réseaux. 
+
 
 ## nmcli - commande de haut niveau, en dehors des interfaces graphiques, pour les machines desktop
 
@@ -71,4 +94,9 @@ Gateway=192.168.0.1
 * `NetworkManager`
 * `iproute`
 * `wpa_supplicant`
+
+## controle du routeur.
+Pour garder le contrôle plein et entier de son routeur, il faut en maitriser le firmware et son logiciel.
+Le projet [openwrt](https://openwrt.org/) fournis une liste de routeur avec le firmware qui reste opensource.
+On peut aussi regarder la distribution [raspap](https://raspap.com/) qui tourne sur Raspberry PI.
 
