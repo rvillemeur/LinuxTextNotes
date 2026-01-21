@@ -6,6 +6,7 @@ Un shell est simplement un macroprocesseur qui exécute des commandes. Le terme 
 macroprocesseur » désigne une fonctionnalité qui permet 
 d'[étendre](https://www.gnu.org/software/bash/manual/html_node/Shell-Expansions.html) 
 du texte et des symboles afin de créer des expressions plus longues. 
+C'est le point d'entrée pour les interfaces homme/machine dite en ligne de commande
 
 Un shell Unix est à la fois un interpréteur de commandes et un langage de 
 programmation. En tant qu'interpréteur de commandes, le shell fournit à 

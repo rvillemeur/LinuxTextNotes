@@ -21,3 +21,15 @@ Parmis les outils disponible:
 * tee (démultiplication des sorties de données entre fichier et STDOUT).
 * tr (remplace dynamiquement des caractères par d'autre).
 * wc (word count - fournis des statistique sur un fichier)
+* uniq ???
+* spell
+* m4 (générateur de macro texte)
+* less (affichage de texte)
+* nl
+* od
+* xxd
+* wc (word count)
+
+# text processing - développé d'avantage dans la section sur groff
+- groff
+- tex/LaTex

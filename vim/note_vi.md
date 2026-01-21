@@ -1,5 +1,9 @@
 # VI and Ex text editor
 
+Vim est un éditeur de texte bien intégré dans le terminal et avec
+l'environnement unix. Emacs est un environnement d'édition de contenu textuel.
+Il replace plusieurs outils
+
 Du site officiel : "Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient."; soit "Vim est un éditeur de texte hautement configurable conçu pour rendre la création et la modification de **tout** type de texte très efficaces."
 
 La plupart des commandes VI sont choisies de façon à:
