@@ -95,3 +95,8 @@ Gateway=192.168.0.1
 * `iproute`
 * `wpa_supplicant`
 
+## controle du routeur.
+Pour garder le contrôle plein et entier de son routeur, il faut en maitriser le firmware et son logiciel.
+Le projet [openwrt](https://openwrt.org/) fournis une liste de routeur avec le firmware qui reste opensource.
+On peut aussi regarder la distribution [raspap](https://raspap.com/) qui tourne sur Raspberry PI.
+
