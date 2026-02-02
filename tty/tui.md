@@ -79,3 +79,5 @@ A partir de ces différentes libraries ( *textualize, vimrunner-python, libtmux*
 [liste github](https://github.com/rothgar/awesome-tuis)
 [TUI pour apprendre le terminal](https://github.com/learnbyexample/TUI-apps?tab=readme-ov-file)
 
+IRC: Weechat
+Courriel: Mutt
