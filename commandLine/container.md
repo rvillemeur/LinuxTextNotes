@@ -1,7 +1,12 @@
 # Container - conteneurs
 
-Les conteneurs (container) sont des unités exécutables qui regroupent le code d'une application avec ses bibliothèques et dépendances.
-Ils permettent au code de s'exécuter dans un environnement isolé, reproductible et séparé de la machine hôte. Cela permet de ne pas polluer la machine de base avec des biblithèques et logiciels qui ne sont utilisé que dans un cadre précis. Plus portable et économes en ressource que les machines virtuelles (de type [virtual box](https://www.virtualbox.org/) ou [qemu](https://www.qemu.org/)).
+Les conteneurs (container) sont des unités exécutables qui regroupent le code
+d'une application avec ses bibliothèques et dépendances. Ils permettent au code
+de s'exécuter dans un environnement isolé, reproductible et séparé de la
+machine hôte. Cela permet de ne pas polluer la machine de base avec des
+biblithèques et logiciels qui ne sont utilisé que dans un cadre précis. Plus
+portable et économes en ressource que les machines virtuelles (de type [virtual
+box](https://www.virtualbox.org/) ou [qemu](https://www.qemu.org/)).
 
 *Docker* est la solution la plus connue dans ce domaine. 
 
