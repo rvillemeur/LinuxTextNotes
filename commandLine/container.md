@@ -34,7 +34,14 @@ temps déjà installé sur une distribution linux. Le fichier ContainerFile perm
 de s'assurer qu'ils sera bien installé avec l'image utilisé:
 
 Le container peut partager l'accès au code source via un point de montage de
-disque local, ou héberger totalement la solution.
+disque local, ou héberger totalement la solution. On fait vraiment la
+séparation entre la chaine de build et de compilation, qui peut être spécifique
+à un projet, et les outils de développement qui restent en local.
+- le debugger se connecte par SSH à la machine cible le code est partagé entre
+- la machine cible et la machine hôte, ou peut être édité à distance. la
+- compilation (si nécessaire) se fait sur la machine cible, commandé par la
+- machine hôte. le formatage de document peut être local, comme il peut être
+- dépendant des outils installé sur la machine cible. etc.
 
 Il existe plusieurs solutions pour mettre en oeuvre ce type de solution. La
 première, développé et popularisé par Microsoft, consiste à ajouter un fichier
@@ -77,3 +84,6 @@ RUN chmod +x /tmp/install-subversion.sh
 RUN /tmp/install-subversion.sh \
   && rm -f /tmp/install-subversion.sh
 ```
+
+Devcontainer with tmux: https://maniacalrobot.co.uk/var/2025/08/release-tmux-devcontainers-plugin
+and https://maniacalrobot.co.uk/var/2025/04/from-tmux-vim-to-vscode-and-back-again
