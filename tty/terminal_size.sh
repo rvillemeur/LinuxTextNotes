@@ -3,13 +3,20 @@
 #source: https://www.baeldung.com/linux/bash-console-geometry
 
 # move cursor to the bottom-right corner
-# CSI P s ; P s H Cursor Position [row;column] (default = [1,1]) (CUP)
+# CSI Ps ; Ps H : Move Cursor Position [row;column] (default = [1,1]) (CUP)
 # CSI 6 n  : Report Cursor Position (CPR) [row;column] as CSI r ; c R
-echo -ne "\e[999;999H\e[6n"
 
+# apparait sous la forme [[ROW;COLR
 #read cursor position
-IFS=';' read -sdR -p $'\e[6n' ROW COL
+# -s: silent mode
+# -d: delim R
+# -p: display prompt on standard error
+# demande à afficher le code du terminal, qui va déplace le curseur jusqu'à 999@999
+# Le terminal répond sous la forme d'une saisie clavier (stdin) de la forme \e[row;colR
+# On lit la réponse jusqu'au caractère "R". La réponse est splitté par ";" dans les 2 variables
+IFS=';' read -sdR -p $'\e[999;999H\e[6n' ROW COL
 
+# On enlève l'escape du code retourné (du type \e[
 rows=${ROW#*[}
 cols=$COL
 
