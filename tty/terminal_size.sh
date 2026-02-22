@@ -16,7 +16,9 @@
 # On lit la réponse jusqu'au caractère "R". La réponse est splitté par ";" dans les 2 variables
 IFS=';' read -sdR -p $'\e[999;999H\e[6n' ROW COL
 
-# On enlève l'escape du code retourné (du type \e[
+# On enlève l'escape du code retourné (du type \e[) par extension de paramètre
+# ${VAR#pattern} : Demande à Bash de supprimer la plus petite partie au début de la variable qui correspond au motif (pattern).
+# *[ : Signifie "n'importe quel caractère suivi d'un crochet". Cela supprime donc exactement le \e[ qui nous gêne.
 rows=${ROW#*[}
 cols=$COL
 
