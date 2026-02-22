@@ -133,6 +133,48 @@ https://www.gnu.org/software/bash/manual/html_node/Job-Control.html
 * `echo *` will show files in the current folder through file globbing on Bourne compatible shells.
 * printf %s\\n ./*
 
+### gestion des erreurs
+
+set -e was an attempt to add "automatic error detection" to the shell. Its goal
+was to cause the shell to abort any time an error occurred, so you don't have
+to put || exit 1 after each important command. This does not work well in
+practice.
+
+But in the shell, most of the tasks you actually care about are done by
+external programs. The shell can't tell whether an external program encountered
+something that it considers an error -- and even if it could, it wouldn't know
+whether the error is an important one, worthy of aborting the entire program,
+or whether it should carry on.
+
+The only information conveyed to the shell by the external program is an exit
+status -- by convention, 0 for success, and non-zero for "some kind of error".
+The developers of the original Bourne shell decided that they would create
+a feature that would allow the shell to check the exit status of every command
+that it runs, and abort if one of them returns non-zero. Thus, set -e was born.
+
+But many commands return non-zero even when there wasn't an error. For example,
+
+```bash
+if [ -d /foo ]; then ...; else ...; fi
+```
+
+If the directory doesn't exist, the [ command returns non-zero. Clearly we
+don't want to abort when that happens -- our script wants to handle that in the
+else part. So the shell implementors made a bunch of special rules, like
+"commands that are part of an if test are immune", and "commands in a pipeline,
+other than the last one, are immune".
+
+These rules are extremely convoluted, and they still fail to catch even some
+remarkably simple cases. Even worse, the rules change from one Bash version to
+another, as Bash attempts to track the extremely slippery POSIX definition of
+this "feature". When a SubShell is involved, it gets worse still -- the
+behavior changes depending on whether Bash is invoked in POSIX mode. Another
+wiki has a page that covers this in more detail. Be sure to check the caveats.
+
+### reference
+https://mywiki.wooledge.org/BashFAQ
+https://mywiki.wooledge.org/BashPitfalls
+
 ## Additional command (not built in but expected)
 https://www.gnu.org/software/coreutils/manual/coreutils.html
 https://www.gnu.org/software/gawk/manual/gawk.html

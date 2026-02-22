@@ -10,6 +10,9 @@ tuer, de savoir s'ils sont terminé proprement, etc...
 
 ## Descripteur de fichier - file descriptor
 
+Toute commande lancée à partir de bash s'exécute dans son propre processus (à l'exception des commandes interne de bash, comme echo, kill, printf, etc.
+Quand un nouveau processus est démarré par le système d'exploitation, il l'associe à 3 descripteurs de fichiers.
+
 File descriptors are a part of the POSIX API. Each Unix process (except perhaps 
 daemons) should have three standard POSIX file descriptors, corresponding to the 
 three standard streams:
@@ -203,3 +206,6 @@ descriptor](https://stackoverflow.com/questions/17100425/posix-process-and-file-
 [bash redirection](https://www.gnu.org/software/bash/manual/html_node/Redirections.html)
 [How file descriptor works](https://stackoverflow.com/questions/7082001/how-do-file-descriptors-work)
 [I&O redirection](https://tldp.org/LDP/abs/html/io-redirection.html)
+https://unix.stackexchange.com/questions/757194/when-and-where-are-the-standard-in-out-and-error-file-descriptors-first-opened
+https://unix.stackexchange.com/questions/676209/does-bash-create-a-child-process-to-run-every-command
+
