@@ -22,5 +22,6 @@ IFS=';' read -sdR -p $'\e[999;999H\e[6n' ROW COL
 rows=${ROW#*[}
 cols=$COL
 
+echo -e "\e[0m"
 echo "Terminal width: $cols"
 echo "Terminal height: $rows"
