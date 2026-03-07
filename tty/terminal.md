@@ -228,3 +228,8 @@ http://www.braun-home.net/michael/info/misc/VT100_commands.htm
 https://gist.github.com/delameter/b9772a0bf19032f977b985091f0eb5c1
 https://espterm.github.io/docs/VT100%20escape%20codes.html
 https://en.wikipedia.org/wiki/ANSI_escape_code
+https://www.xfree86.org/current/ctlseqs.html
+https://misc.flogisoft.com/bash/tip_colors_and_formatting
+https://tintin.mudhalla.net/info/xterm/
+https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
+

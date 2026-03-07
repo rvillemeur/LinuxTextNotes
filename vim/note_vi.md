@@ -4,12 +4,20 @@ Vim est un éditeur de texte bien intégré dans le terminal et avec
 l'environnement unix. Emacs est un environnement d'édition de contenu textuel.
 Il replace plusieurs outils
 
-Du site officiel : "Vim is a highly configurable text editor built to make creating and changing any kind of text very efficient."; soit "Vim est un éditeur de texte hautement configurable conçu pour rendre la création et la modification de **tout** type de texte très efficaces."
+Du site officiel : "Vim is a highly configurable text editor built to make
+creating and changing any kind of text very efficient."; soit "Vim est un
+éditeur de texte hautement configurable conçu pour rendre la création et la
+modification de **tout** type de texte très efficaces."
 
 La plupart des commandes VI sont choisies de façon à:
-- limiter le nombre de touche pour atteindre son but. C'est même devenu un sport chez certain adepte de Vi. Recherchez ViGolf sur internet.
-- limiter le mouvements des doigts et des mains sur le clavier. L'éditeur a été conçu en ayant pour référence le clavier du terminal ADM-3A.
-- faciliter les moyens mnémotechniques, en gardant à l'esprit que les commandes ont été pensé par un programmeur anglophone. La plupart des commandes tiennent en une lettre.
+
+- limiter le nombre de touche pour atteindre son but. C'est même devenu un sport
+chez certain adepte de Vi. Recherchez ViGolf sur internet.
+- limiter le mouvements des doigts et des mains sur le clavier. L'éditeur a été
+conçu en ayant pour référence le clavier du terminal ADM-3A.
+- faciliter les moyens mnémotechniques, en gardant à l'esprit que les commandes
+ont été pensé par un programmeur anglophone. La plupart des commandes tiennent
+en une lettre.
 
 ## Commande VI
 
