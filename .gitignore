@@ -1,2 +1,5 @@
 #ignore vim temp file
 *.swp
+
+#ignore claude file (for now)
+CLAUDE.md
