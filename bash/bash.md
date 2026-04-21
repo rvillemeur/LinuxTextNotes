@@ -55,7 +55,7 @@ https://www.gnu.org/software/bash/manual/html_node/Shell-Functions.html
 * read
 * readarray
 
-#### work with other script
+#### work with other script et environnement hérité
 * source / .
 * export
 
