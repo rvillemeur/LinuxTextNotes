@@ -1,0 +1,68 @@
+.\" ====================================================================
+.\" chapitres/02-outils/index.mom
+.\" ====================================================================
+.ds mom*titre*courant "Outils en ligne de commande"
+.HEADING 1 "Les outils en ligne de commande"
+.PP
+La puissance de la ligne de commande tient autant au shell qu'à
+l'écosystème d'outils qui l'entoure.
+Ces programmes, minimalistes pris séparément, deviennent redoutables
+lorsqu'on les combine avec des tubes.
+.\"
+.HEADING 2 "Manipulation de texte"
+.PP
+Les outils de traitement de texte constituent le cœur de la
+communication inter-processus sous Unix.
+.CMD grep
+filtre les lignes,
+.CMD sed
+les transforme,
+.CMD awk
+les structure.
+.PP
+Exemple\~: extraire les adresses IP d'un journal système.
+.BLOC_CODE
+# Filtrer les connexions SSH réussies
+grep "Accepted" /var/log/auth.log \
+  | awk '{print $11}' \
+  | sort | uniq -c | sort -rn \
+  | head -10
+.BLOC_CODE END
+.NOTE
+La barre oblique inversée en fin de ligne (
+.CMD \e
+) permet de continuer une commande sur la ligne suivante sans la
+terminer.
+C'est une convention de lisibilité, non une exigence syntaxique.
+.NOTE END
+.\"
+.HEADING 2 "Recherche dans l'arborescence"
+.PP
+.CMD find
+parcourt une arborescence de fichiers selon des critères combinables\~:
+type, nom, taille, date de modification, permissions.
+.BLOC_CODE
+# Fichiers modifiés dans les 24 dernières heures
+find /etc -type f -mtime -1
+
+# Fichiers de plus de 100 Mo
+find /var -type f -size +100M -exec ls -lh {} \;
+.BLOC_CODE END
+.\"
+.HEADING 3 "Expressions régulières"
+.PP
+Les
+.TERM "expressions régulières"
+(regex) sont un langage de description de motifs textuels.
+Elles sont au cœur de
+.CMD grep ,
+.CMD sed ,
+.CMD awk
+et de nombreux langages de programmation.
+La touche
+.TOUCHE Tab
+déclenche la complétion automatique dans Bash, facilitant l'écriture
+de chemins longs.
+.\"
+.\" Exemple d'inclusion d'image (à décommenter avec un fichier réel) :
+.\" .ILLUSTRATION chapitres/02-outils/assets/pipeline-grep.pdf "Chaîne grep | sort | uniq" 130

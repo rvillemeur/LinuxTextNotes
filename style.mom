@@ -1,0 +1,249 @@
+.\" ====================================================================
+.\" style.mom — Feuille de style pour
+.\"   « La ligne de commande et le terminal sous Linux »
+.\" ====================================================================
+.\"
+.\" ESPACES INSÉCABLES — RAPPEL TYPOGRAPHIQUE FRANÇAIS
+.\" Avant : ; ! ? »  →  mot\~;   mot\~!   mot\~?   mot\~»
+.\" Après «           →  «\~mot
+.\" \~  = espace insécable cadratin (largeur d'un espace normal)
+.\" \   = espace insécable fine (barre oblique + espace)
+.\"
+.\" ====================================================================
+.\" POLICES
+.\" Libertinus / Linux Libertine non disponible dans cette installation
+.\" (vérifié : fc-list | grep -i libert renvoie vide).
+.\" Police de substitution : Times (famille groff T).
+.\" Pour utiliser Libertinus après installation, remplacer T par LIB
+.\" dans la directive .FAMILY ci-dessous.
+.\" ====================================================================
+.\"
+.\" ====================================================================
+.\" SUPPORT DES IMAGES PDF
+.\" Chargement de pdfpic.tmac pour la macro .PDFPIC (inclusion d'images
+.\" EPS/PDF dans la sortie -Tpdf).
+.\" ====================================================================
+.mso pdfpic.tmac
+.\"
+.\" ====================================================================
+.\" CÉSURE FRANÇAISE
+.\" On charge cesure-fr.tmac (fichier local, encodé en Latin-9) qui active :
+.\"   - .hla fr et .hpf hyphen.fr  (motifs de césure française)
+.\"   - .hcode pour tous les caractères accentués du français
+.\"
+.\" Pourquoi un fichier séparé et non pas fr.tmac ?
+.\"   fr.tmac charge latin9.tmac qui redéfinit la table de glyphes pour
+.\"   Latin-9, ce qui corrompt le rendu des caractères UTF-8 (é → Ã©).
+.\"
+.\" Pourquoi pas les .hcode directement ici ?
+.\"   .hcode exige des « ordinary characters » (octets bruts).
+.\"   Les séquences UTF-8 multi-octets et les escapes \[uXXXX] ne le sont
+.\"   pas.  cesure-fr.tmac est un fichier binaire Latin-9 chargé via .mso
+.\"   (sans preconv), ce qui expose les octets bruts à troff directement.
+.\"
+.\" Prérequis dans le Makefile : -M . pour que .mso trouve le fichier local.
+.\" ====================================================================
+.mso cesure-fr.tmac
+.\"
+.\" ====================================================================
+.\" MISE EN PAGE GÉNÉRALE — A4, marges 30mm haut/bas, 25mm gauche/droite
+.\" ====================================================================
+.PAPER A4
+.L_MARGIN 2.5c
+.R_MARGIN 2.5c
+.T_MARGIN 3c
+.B_MARGIN 3c
+.\"
+.FAMILY T
+.PT_SIZE 11
+.LS 15p
+.JUSTIFY
+.\"
+.\" ====================================================================
+.\" GUILLEMETS FRANÇAIS — « guillemets » automatiques depuis "..."
+.\" ====================================================================
+.SMARTQUOTES FR
+.\"
+.\" ====================================================================
+.\" DATE EN FRANÇAIS
+.\" Les registres groff \n[mo], \n[dy], \n[year] sont disponibles
+.\" à la compilation.  On construit une chaîne MO-FR avec le nom du
+.\" mois en français.
+.\" ====================================================================
+.if \n[mo]=1  .ds MO-FR janvier
+.if \n[mo]=2  .ds MO-FR février
+.if \n[mo]=3  .ds MO-FR mars
+.if \n[mo]=4  .ds MO-FR avril
+.if \n[mo]=5  .ds MO-FR mai
+.if \n[mo]=6  .ds MO-FR juin
+.if \n[mo]=7  .ds MO-FR juillet
+.if \n[mo]=8  .ds MO-FR août
+.if \n[mo]=9  .ds MO-FR septembre
+.if \n[mo]=10 .ds MO-FR octobre
+.if \n[mo]=11 .ds MO-FR novembre
+.if \n[mo]=12 .ds MO-FR décembre
+.\"
+.\" ====================================================================
+.\" EN-TÊTE ET PIED DE PAGE
+.\" Titre courant du chapitre : mis à jour manuellement dans chaque
+.\" index.mom via :  .ds mom*titre*courant "Nom du chapitre"
+.\" (mom ne met pas automatiquement à jour l'en-tête depuis HEADING 1
+.\" en DOCTYPE DEFAULT.)
+.\" ====================================================================
+.ds mom*titre*courant ""
+.HEADER_LEFT   "\*[mom*titre*courant]"
+.HEADER_RIGHT  "\n[%]"
+.FOOTER_CENTER "\*[$TITLE]"
+.\"
+.\" ====================================================================
+.\" HIÉRARCHIE DES TITRES
+.\" H1 : 18pt gras, nouvelle page, espace avant 0, après 18pt
+.\" H2 : 14pt gras, espace avant 18pt, après 10pt
+.\" H3 : 11pt gras italique, espace avant 12pt, après 6pt
+.\" ====================================================================
+.HEADING_STYLE 1 FONT B SIZE +7 SPACE_ABOVE 0 SPACE_BELOW 18p NEWPAGE
+.HEADING_STYLE 2 FONT B SIZE +3 SPACE_ABOVE 18p SPACE_BELOW 10p
+.HEADING_STYLE 3 FONT BI SPACE_ABOVE 12p SPACE_BELOW 6p
+.\"
+.\" ====================================================================
+.\" TABLE DES MATIÈRES
+.\" Le titre est redéfini en français (original anglais : "Contents").
+.\" La limitation de profondeur (niveaux 1 et 2 uniquement) n'est pas
+.\" disponible via une macro -mom dans la version 1.23.0.
+.\" Compromis : tous les niveaux de HEADING apparaissent dans la TOC.
+.\" Pour exclure le niveau 3, on pourrait utiliser les primitives bas
+.\" niveau de mom (patch mom.tmac), ce qui sortirait du cadre des
+.\" fonctionnalités documentées.
+.\" ====================================================================
+.ds TOC_TITLE "Table des matières"
+.\"
+.\" ====================================================================
+.\" CHAÎNES AUTO-GÉNÉRÉES REDÉFINIES EN FRANÇAIS
+.\" (original anglais indiqué en commentaire)
+.\" ====================================================================
+.\" "Contents" → "Table des matières"  (fait ci-dessus via TOC_TITLE)
+.\"
+.\" ====================================================================
+.\" MACROS PERSONNALISÉES
+.\" ====================================================================
+.\"
+.\" ---------------------------------------------------------------
+.\" .CMD texte
+.\" Commande ou nom de programme dans le texte courant.
+.\" Rendu : fonte monospace gras (Courier Bold).
+.\" Usage dans un paragraphe en mode remplissage (.fi) :
+.\"   La commande
+.\"   .CMD ls
+.\"   liste le répertoire courant.
+.\" → Les sauts de ligne autour de la macro deviennent des espaces
+.\"   en mode remplissage, ce qui donne l'apparence inline.
+.\" ---------------------------------------------------------------
+.de CMD
+\f[CB]\$1\f[]
+..
+.\"
+.\" ---------------------------------------------------------------
+.\" .BLOC_CODE / .BLOC_CODE END
+.\" Bloc de code multi-lignes.
+.\" Rendu : police monospace 9pt, retrait gauche 8mm, sans remplissage,
+.\"         espace avant/après 6pt.
+.\" Note : le filet gauche vertical n'est pas implémenté — il nécessite
+.\"         des primitives PostScript embarquées ou une compilation en
+.\"         deux passes pour connaître la hauteur du bloc à l'avance.
+.\"         Alternative retenue : retrait + police monospace distinctifs.
+.\" ---------------------------------------------------------------
+.de BLOC_CODE
+.if '\\$1'END' \{\
+.  fi
+.  in 0
+.  fam T
+.  ps 11
+.  vs 15p
+.  sp 6p
+.\}
+.if !'\\$1'END' \{\
+.  sp 6p
+.  in 0.8c
+.  fam C
+.  ps 9
+.  vs 11p
+.  nf
+.\}
+..
+.\"
+.\" ---------------------------------------------------------------
+.\" .NOTE / .NOTE END
+.\" Note ou aparté dans le texte.
+.\" Rendu : italique, retrait gauche et droit 12mm, espace avant/après 8pt.
+.\" Même limitation que BLOC_CODE pour le filet gauche.
+.\" ---------------------------------------------------------------
+.de NOTE
+.if '\\$1'END' \{\
+.  br
+.  ll +1.2c
+.  in -1.2c
+.  ft R
+.  sp 8p
+.\}
+.if !'\\$1'END' \{\
+.  br
+.  sp 8p
+.  in +1.2c
+.  ll -1.2c
+.  ft I
+.\}
+..
+.\"
+.\" ---------------------------------------------------------------
+.\" .TERM terme
+.\" Introduit un terme technique pour la première fois.
+.\" Rendu : gras italique.
+.\" ---------------------------------------------------------------
+.de TERM
+\f[BI]\$1\f[]
+..
+.\"
+.\" ---------------------------------------------------------------
+.\" .TOUCHE touche
+.\" Touche ou raccourci clavier.  Ex : .TOUCHE Ctrl-C
+.\" Rendu : [touche] en monospace.
+.\" ---------------------------------------------------------------
+.de TOUCHE
+[\f[CB]\$1\f[]]
+..
+.\"
+.\" ---------------------------------------------------------------
+.\" .ILLUSTRATION chemin légende largeur_mm
+.\" Inclusion d'une image (EPS ou PDF uniquement).
+.\"
+.\"   chemin     : chemin relatif à la racine du projet
+.\"                ex : chapitres/01-bash/assets/pipeline.pdf
+.\"   légende    : texte affiché sous l'image en italique 9pt ;
+.\"                passer "" pour aucune légende
+.\"   largeur_mm : largeur souhaitée en millimètres (entier, ex : 120)
+.\"
+.\" Conversion mm → points : largeur × 2835 / 1000 (arrondi inférieur).
+.\" Si le fichier est introuvable, pdfpic émettra un avertissement dans
+.\" groff.log mais la compilation continuera.
+.\" Comportement :
+.\"   - image centrée
+.\"   - légende centrée, italique 9pt, 4pt sous l'image
+.\"   - espace de 8pt avant et après le bloc entier
+.\" ---------------------------------------------------------------
+.de ILLUSTRATION
+.\" $1=chemin  $2=légende  $3=largeur_mm
+.nr mom*illus*w (\\$3*2835/1000)
+.sp 8p
+.PDFPIC -C -W \\n[mom*illus*w]p \\$1
+.if !'\\$2'' \{\
+.  br
+.  sp 4p
+.  ce 1
+.  ft I
+.  ps 9
+\\$2
+.  ps 11
+.  ft R
+.\}
+.sp 8p
+..

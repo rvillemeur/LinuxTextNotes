@@ -1,0 +1,134 @@
+.\" ====================================================================
+.\" chapitres/04-groff/index.mom
+.\" ====================================================================
+.ds mom*titre*courant "Groff"
+.HEADING 1 "Groff — la typographie en ligne de commande"
+.PP
+.TERM "Groff"
+(GNU troff) est un système de composition typographique en ligne de
+commande.
+Il transforme des fichiers texte balisés en documents de haute qualité
+(PDF, PostScript, HTML, man pages).
+Il incarne la philosophie Unix\~: un préprocesseur prépare le texte,
+.CMD groff
+le compose, et un pilote de sortie produit le format final.
+.PP
+Ce document lui-même est composé avec
+.CMD groff
+et le paquet de macros
+.CMD -mom
+\~: il est à la fois le sujet et l'exemple.
+.\"
+.HEADING 2 "Pipeline de compilation"
+.PP
+Un document
+.CMD groff
+passe par une chaîne de préprocesseurs avant d'atteindre le moteur de
+composition.
+.BLOC_CODE
+# Compilation avec les préprocesseurs pic, tbl et eqn
+pic fichier.ms | tbl | eqn | groff -ms -Tpdf > fichier.pdf
+
+# Compilation d'un document multi-fichiers UTF-8 avec -mom
+soelim main.mom | preconv -e utf8 | groff -M . -mom -Tpdf > document.pdf
+.BLOC_CODE END
+.PP
+Chaque préprocesseur transforme une portion du source\~:
+.CMD pic
+dessine les diagrammes,
+.CMD tbl
+formate les tableaux,
+.CMD eqn
+compose les formules mathématiques.
+.CMD groff
+reçoit le résultat final et produit la mise en page.
+.\"
+.HEADING 3 "Un pipeline, trois responsabilités"
+.PP
+La commande de compilation de ce document illustre la philosophie Unix
+dans toute sa rigueur\~:
+.BLOC_CODE
+soelim main.mom | preconv -e utf8 | groff -M . -mom -Tpdf > document.pdf
+.BLOC_CODE END
+.PP
+Chaque outil fait exactement une chose.
+.CMD soelim
+résout les inclusions
+.CMD .so
+\~: il lit
+.CMD main.mom ,
+rencontre
+.CMD ".so chapitres/01-bash/index.mom"
+et remplace cette ligne par le contenu du fichier, récursivement, jusqu'à
+produire un flux de texte plat et autonome.
+Il ne sait rien de l'encodage, rien de la typographie.
+.PP
+.CMD preconv
+reçoit ce flux et le convertit d'UTF-8 vers la représentation interne
+de groff.
+Il ne sait rien de la mise en page ni de la structure du document.
+.PP
+.CMD groff
+reçoit un flux déjà aplati et déjà converti\~: il peut se concentrer
+entièrement sur la composition typographique et la production du PDF.
+Il ne sait pas d'où vient le texte.
+.NOTE
+Cette séparation a une conséquence pratique importante\~: si l'on appelait
+.CMD "groff -Kutf8"
+directement sur
+.CMD main.mom ,
+l'option
+.CMD -Kutf8
+ne s'appliquerait qu'au fichier principal.
+Les fichiers inclus via
+.CMD .so
+seraient lus par troff en dehors du pipeline
+.CMD preconv ,
+et leurs octets UTF-8 arriveraient bruts — chaque séquence de deux octets
+(comme
+.CMD 0xC3 0xA9
+pour
+.CMD é )
+serait interprétée comme deux caractères Latin-1 distincts, produisant
+.CMD "Ã©"
+à l'écran.
+.CMD soelim
+résout le problème en amont, avant que l'encodage entre en jeu.
+.NOTE END
+.\"
+.HEADING 2 "Le paquet -mom"
+.PP
+.TERM "-mom"
+est un paquet de macros de haut niveau pour
+.CMD groff ,
+conçu pour la composition de documents complets (livres, rapports,
+articles).
+Il offre une interface lisible pour la mise en page, les en-têtes, les
+pieds de page, la table des matières et les styles de titre.
+.NOTE
+Le présent document utilise
+.CMD -mom
+version incluse dans
+.CMD groff
+1.23.0.
+Les exemples sont à adapter si vous utilisez une version antérieure.
+.NOTE END
+.\"
+.HEADING 3 "Séparation contenu et rendu"
+.PP
+La force de
+.CMD groff
+est la même que celle de
+.CMD bash
+\~: la séparation entre ce que l'on dit (le contenu) et la façon dont
+on le dit (le rendu).
+Un fichier source
+.CMD .mom
+est du texte brut\~; sa mise en page dépend uniquement des macros et
+de la feuille de style.
+La touche
+.TOUCHE F5
+dans un éditeur peut suffire à recompiler l'intégralité du document.
+.\"
+.\" Exemple d'inclusion d'image (à décommenter avec un fichier réel) :
+.\" .ILLUSTRATION chapitres/04-groff/assets/pipeline-groff.pdf "Pipeline de compilation groff" 150

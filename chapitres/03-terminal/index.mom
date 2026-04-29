@@ -1,0 +1,89 @@
+.\" ====================================================================
+.\" chapitres/03-terminal/index.mom
+.\" ====================================================================
+.ds mom*titre*courant "Le terminal"
+.HEADING 1 "Le terminal"
+.PP
+Le
+.TERM "terminal"
+est l'interface entre l'utilisateur et le système.
+À l'origine matériel (télétype, puis écran cathodique), il est
+aujourd'hui émulé par des programmes logiciels qui reproduisent le
+comportement de ces appareils.
+Comprendre le terminal, c'est comprendre pourquoi les touches de
+curseur fonctionnent, pourquoi les couleurs s'affichent, et comment
+les applications TUI comme
+.CMD vim
+ou
+.CMD weechat
+réalisent leur interface.
+.\"
+.HEADING 2 "Séquences d'échappement ANSI"
+.PP
+Le terminal interprète des
+.TERM "séquences d'échappement"
+pour exécuter des actions\~: déplacer le curseur, changer la couleur,
+effacer la ligne.
+Elles commencent toutes par le caractère
+.TERM "ESC"
+(code ASCII 27, noté
+.CMD \ee
+en Bash), suivi d'un crochet
+.CMD [
+et d'un paramètre numérique.
+.BLOC_CODE
+# Afficher du texte en rouge, puis réinitialiser la couleur
+printf '\e[31mTexte en rouge\e[0m\n'
+
+# Déplacer le curseur à la ligne 5, colonne 10
+printf '\e[5;10H'
+
+# Effacer la ligne courante
+printf '\e[2K'
+.BLOC_CODE END
+.PP
+La touche
+.TOUCHE Échap
+envoie précisément ce caractère ESC au programme en cours.
+La combinaison
+.TOUCHE Ctrl-[
+est équivalente.
+.\"
+.HEADING 2 "La base de données terminfo"
+.PP
+.TERM "terminfo"
+est une base de données qui décrit les capacités de chaque type de
+terminal\~: séquences d'entrée des touches, séquences de contrôle de
+l'affichage, nombre de couleurs disponibles.
+.CMD ncurses
+et les applications TUI s'appuient sur terminfo pour rester portables
+entre les émulateurs de terminaux.
+.BLOC_CODE
+# Afficher les capacités du terminal courant
+infocmp $TERM | head -20
+
+# Connaître le nom du terminal utilisé
+echo $TERM
+.BLOC_CODE END
+.NOTE
+La variable d'environnement
+.CMD $TERM
+doit refléter fidèlement l'émulateur utilisé.
+Une valeur incorrecte provoque des artefacts visuels dans les
+applications TUI (couleurs manquantes, touches mal interprétées).
+.NOTE END
+.\"
+.HEADING 3 "Vim comme étude de cas"
+.PP
+.TERM "Vim"
+est un éditeur modal\~: le même ensemble de touches a des effets
+différents selon le
+.TERM "mode"
+actif.
+En mode normal, la touche
+.TOUCHE h
+déplace le curseur à gauche\~; en mode insertion, elle insère la lettre
+«\~h\~».
+.\"
+.\" Exemple d'inclusion d'image (à décommenter avec un fichier réel) :
+.\" .ILLUSTRATION chapitres/03-terminal/assets/ansi-color.pdf "Table des 16 couleurs ANSI standard" 100

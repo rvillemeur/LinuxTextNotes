@@ -1,0 +1,89 @@
+.\" ====================================================================
+.\" chapitres/01-bash/index.mom
+.\" ====================================================================
+.ds mom*titre*courant "Bash"
+.HEADING 1 "Bash — le shell GNU"
+.PP
+.TERM "Bash"
+(Bourne Again SHell) est l'interpréteur de commandes par défaut sur la
+quasi-totalité des distributions Linux.
+Il fait l'interface entre l'utilisateur et le noyau\~: il lit les
+commandes, les interprète, et en transmet le résultat.
+Il est aussi un véritable langage de programmation, avec des variables,
+des structures de contrôle et des fonctions.
+.PP
+Ce chapitre décrit les mécanismes internes de Bash, sans recourir aux
+commandes externes (comme
+.CMD ls
+ou
+.CMD find
+, qui appartiennent au paquet coreutils).
+L'objectif est de montrer la puissance des seules primitives du shell.
+.\"
+.HEADING 2 "Variables et expansions"
+.PP
+Une variable est déclarée par simple affectation, sans espace de part et
+d'autre du signe
+.CMD =
+\~:
+.BLOC_CODE
+# Déclaration et utilisation d'une variable
+NOM="Alice"
+echo "Bonjour, $NOM !"
+
+# Expansion de paramètre : longueur d'une chaîne
+echo "Longueur : ${#NOM}"
+
+# Substitution de commande
+DATE_COURANTE=$(date +%Y-%m-%d)
+echo "Aujourd'hui : $DATE_COURANTE"
+.BLOC_CODE END
+.PP
+Bash distingue les guillemets doubles (qui permettent l'expansion des
+variables) des guillemets simples (qui les inhibent).
+.\"
+.HEADING 2 "Redirections et descripteurs de fichiers"
+.PP
+Tout processus dispose de trois
+.TERM "descripteurs de fichiers"
+standard ouverts dès son démarrage\~:
+l'entrée standard (fd 0, stdin), la sortie standard (fd 1, stdout) et
+la sortie d'erreur (fd 2, stderr).
+.BLOC_CODE
+# Rediriger stdout vers un fichier
+echo "Résultat" > sortie.txt
+
+# Rediriger stderr vers stdout, puis le tout dans un fichier
+commande 2>&1 | tee journal.txt
+
+# Lire un fichier comme stdin avec un here-document
+cat <<EOF
+Ligne 1
+Ligne 2
+EOF
+.BLOC_CODE END
+.PP
+La combinaison de ces redirections avec les
+.TERM "tubes"
+(pipes) constitue le cœur de la philosophie Unix.
+La touche
+.TOUCHE Ctrl-D
+envoie un EOF (fin de fichier) sur l'entrée standard.
+.\"
+.HEADING 3 "Le fichier /dev/null"
+.PP
+.CMD /dev/null
+est un fichier spécial qui absorbe tout ce qui lui est envoyé.
+Il est utile pour supprimer une sortie indésirable\~:
+.BLOC_CODE
+commande_bavarde > /dev/null 2>&1
+.BLOC_CODE END
+.NOTE
+Rediriger vers
+.CMD /dev/null
+ne ralentit pas la commande\~: le noyau court-circuite l'écriture
+physique dès qu'il reconnaît ce fichier spécial.
+.NOTE END
+.\"
+.\" Exemple d'inclusion d'image (à décommenter avec un fichier réel) :
+.\" .ILLUSTRATION chapitres/01-bash/assets/pipeline.pdf "Schéma d'un pipeline Bash" 140

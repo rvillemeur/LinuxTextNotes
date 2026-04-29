@@ -1,0 +1,79 @@
+.\" ====================================================================
+.\" chapitres/00-avant-propos/index.mom
+.\" ====================================================================
+.ds mom*titre*courant "Avant-propos"
+.HEADING 1 "Avant-propos"
+.PP
+Ce livre est né d'une conviction\~: la ligne de commande n'est pas un
+vestige du passé, mais l'un des environnements les plus expressifs et
+les plus stables qui existent en informatique.
+Un shell ouvert devant vous, c'est l'accès direct au système, sans
+couche graphique qui s'interpose, sans menu à parcourir.
+.PP
+L'ouvrage s'adresse au lecteur technique débutant ou intermédiaire qui
+souhaite comprendre ce qui se passe réellement quand il tape une
+commande.
+Nous partons de
+.CMD bash
+et de ses mécanismes internes, nous traversons les outils classiques du
+monde Unix, nous explorons les mystères du terminal, et nous terminons
+par
+.CMD groff
+\~— lui-même un exemple vivant de la philosophie que nous décrivons.
+.\"
+.HEADING 2 "Organisation de l'ouvrage"
+.PP
+Le document est divisé en quatre parties.
+La première traite de
+.TERM "Bash"
+et de la syntaxe du shell.
+La deuxième passe en revue les outils en ligne de commande les plus
+utiles.
+La troisième s'intéresse au terminal, à ses codes d'échappement et aux
+applications textuelles (
+.TERM "TUI"
+).
+La quatrième, enfin, présente
+.CMD groff
+comme archétype de la composition typographique en ligne de commande.
+.PP
+Chaque partie peut être lue indépendamment, mais l'ordre proposé
+construit progressivement un modèle mental cohérent du système.
+.\"
+.HEADING 3 "Conventions typographiques"
+.PP
+Les commandes et noms de programmes apparaissent en
+.CMD fonte
+monospace.
+Les termes techniques introduits pour la première fois sont en
+.TERM "gras italique".
+Les touches du clavier sont notées
+.TOUCHE Ctrl-C
+ou
+.TOUCHE Entrée .
+.PP
+Les blocs de code sont mis en retrait et composés en police à largeur
+fixe\~:
+.BLOC_CODE
+# Afficher le répertoire courant
+echo "Répertoire : $PWD"
+
+# Lister les fichiers avec leurs droits
+ls -lh
+.BLOC_CODE END
+.PP
+Les notes et apartés apparaissent en retrait et en italique\~:
+.NOTE
+Les exemples de ce livre ont été testés sous Fedora Linux avec
+.CMD bash
+version 5.2 et
+.CMD groff
+version 1.23.0.
+Les différences mineures avec d'autres distributions sont signalées
+au fil du texte.
+.NOTE END
+.PP
+Bonne lecture.
+.\"
+.\" Exemple d'inclusion d'image (à décommenter avec un fichier réel) :
+.\" .ILLUSTRATION chapitres/00-avant-propos/assets/exemple.pdf "Légende de l'illustration" 120

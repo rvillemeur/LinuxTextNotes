@@ -3,3 +3,7 @@
 
 #ignore claude file (for now)
 CLAUDE.md
+
+# Sortie compilée et journaux groff
+document.pdf
+groff.log

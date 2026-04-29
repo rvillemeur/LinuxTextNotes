@@ -1,0 +1,59 @@
+.\" ====================================================================
+.\" main.mom — Fichier maître du document
+.\" « La ligne de commande et le terminal sous Linux »
+.\"
+.\" Compilation depuis la racine du projet :
+.\"   groff -mom -Kutf8 -Tpdf main.mom > document.pdf 2>groff.log
+.\"
+.\" Les inclusions .so sont résolues depuis le répertoire de travail
+.\" courant (la racine du projet), et non depuis l'emplacement de ce
+.\" fichier.
+.\" ====================================================================
+.\"
+.\" --- Chargement de la feuille de style ---
+.so style.mom
+.\"
+.\" --- Métadonnées du document ---
+.TITLE    "La ligne de commande et le terminal sous Linux"
+.SUBTITLE "Un tour d'horizon des outils Unix"
+.AUTHOR   "Renaud de Villemeur"
+.\" Note : .DATE n'est pas supporté avec DOCTYPE DEFAULT dans -mom 1.23.0
+.\" (il est conçu pour DOCTYPE LETTER).  Son utilisation ouvre la diversion
+.\" LETTERHEAD1 sans la fermer, avalant tout le contenu du document.
+.\" Compromis : la date est omise du docheader.  Elle peut être ajoutée
+.\" manuellement dans le texte de l'avant-propos.
+.\"
+.\" --- Type et style du document ---
+.DOCTYPE    DEFAULT
+.COPYSTYLE  FINAL
+.PRINTSTYLE TYPESET
+.\"
+.\" --- Démarrage du document ---
+.\" Note : pour DOCTYPE DEFAULT, -mom génère automatiquement un en-tête
+.\" de document (DOCHEADER) en haut de la première page de contenu, à
+.\" partir des champs TITLE/SUBTITLE/AUTHOR/DATE déclarés ci-dessus.
+.\" Une page de titre séparée (COVER) requiert DOCTYPE CHAPTER ou NAMED,
+.\" ce qui imposerait de restructurer chaque chapitre.  Compromis retenu :
+.\" DOCHEADER automatique en tête de première page.
+.START
+.\"
+.\" ====================================================================
+.\" TABLE DES MATIÈRES
+.\" Générée automatiquement par .TC en fin de document.
+.\" Placée en fin de document (comportement standard de groff -mom).
+.\" Pour placer la TOC en début de document (après la page de titre),
+.\" une compilation en deux passes serait nécessaire, ce qui dépasse
+.\" le cadre d'une Makefile simple.  Compromis retenu : TOC en fin.
+.\" ====================================================================
+.\"
+.\" ====================================================================
+.\" CHAPITRES
+.\" ====================================================================
+.so chapitres/00-avant-propos/index.mom
+.so chapitres/01-bash/index.mom
+.so chapitres/02-outils/index.mom
+.so chapitres/03-terminal/index.mom
+.so chapitres/04-groff/index.mom
+.\"
+.\" --- Génération de la table des matières ---
+.TC
