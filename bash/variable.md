@@ -208,3 +208,98 @@ shellcheck monscript.sh
 ```
 
 `shellcheck` repère automatiquement les variables non quotées, les `$*` dangereux, etc.
+
+---
+
+## Bash et Unicode
+
+### Stockage des variables : des octets, pas des caractères
+
+Bash stocke toutes les variables comme des **séquences d'octets bruts**. Il n'existe pas de type "chaîne Unicode" en interne. C'est la **locale** du processus qui détermine comment ces octets sont interprétés comme des caractères.
+
+```bash
+LANG=fr_FR.UTF-8    # bash lit LC_CTYPE pour savoir comment décoder
+export LC_ALL=fr_FR.UTF-8
+```
+
+### `${#var}` — longueur : octets ou caractères ?
+
+C'est le piège le plus fréquent :
+
+```bash
+export LANG=fr_FR.UTF-8
+mot="café"
+echo ${#mot}    # → 4  (caractères, avec locale UTF-8)
+
+export LANG=C
+echo ${#mot}    # → 5  (octets : é = 2 octets en UTF-8)
+```
+
+Avec la locale UTF-8, `${#var}` compte des **points de code**, pas des octets.
+
+### `${var:offset:length}` — extraction de sous-chaîne
+
+Même comportement : les indices sont en **caractères** si la locale est UTF-8 :
+
+```bash
+export LANG=fr_FR.UTF-8
+s="éléphant"
+echo "${s:0:3}"   # → élé  (3 caractères)
+
+export LANG=C
+echo "${s:0:3}"   # → él   (3 octets, coupe é au milieu → résultat cassé)
+```
+
+### Littéraux Unicode : `$'...'` (ANSI-C quoting)
+
+Depuis bash 4.2, la syntaxe `$'...'` supporte les séquences d'échappement Unicode :
+
+```bash
+printf '%s\n' $'é'      # → é   (U+00E9)
+printf '%s\n' $'\U0001F600'  # → 😀  (hors BMP, bash 4.2+)
+```
+
+C'est le seul moyen propre d'insérer un codepoint Unicode par sa valeur numérique dans un script.
+
+### Modification de casse : `${var^^}` / `${var,,}`
+
+Les opérateurs de casse sont locale-aware depuis bash 4 :
+
+```bash
+export LANG=fr_FR.UTF-8
+s="école"
+echo "${s^^}"   # → ÉCOLE  (é, ç, etc. convertis correctement)
+
+export LANG=C
+echo "${s^^}"   # → éCOLE  (é ignoré, non-ASCII laissé intact)
+```
+
+### Pattern matching et regex
+
+- Le globbing (`*`, `?`, `[...]`) est locale-aware : `[[:alpha:]]` inclut les accents avec une locale UTF-8.
+- `[[ $var =~ regex ]]` délègue à la libc (POSIX ERE) : la locale s'applique pour `[[:alpha:]]`, etc.
+
+```bash
+export LANG=fr_FR.UTF-8
+[[ "éàü" =~ ^[[:alpha:]]+$ ]] && echo "match"  # → match
+```
+
+### Résumé des comportements selon la locale
+
+| Fonctionnalité | `LANG=C` | `LANG=…UTF-8` |
+|---|---|---|
+| `${#var}` | octets | caractères |
+| `${var:n:m}` | octets | caractères |
+| `${var^^}` | ASCII seulement | locale-aware |
+| `[[:alpha:]]` | ASCII seulement | inclut accents |
+| `read` / `IFS` | octets | caractères |
+| `$'\uXXXX'` | produit des octets UTF-8 | idem |
+
+### Piège principal : scripts sans locale explicite
+
+Un script qui ne fixe pas la locale hérite de celle de son appelant. Si un script est lancé par un cron job ou un service système avec `LANG=C`, tous les calculs de longueur et les extractions seront en octets — silencieusement incorrects pour du texte non-ASCII. La bonne pratique est de déclarer explicitement la locale en tête de script :
+
+```bash
+#!/usr/bin/env bash
+export LC_ALL=fr_FR.UTF-8
+```
