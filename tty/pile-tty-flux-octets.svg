@@ -1,0 +1,129 @@
+<svg viewBox="0 0 1140 900" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <title>Pile tty / bash / TUI — flux d'octets dans les deux sens</title>
+  <desc>Le pseudo-terminal a deux extrémités nommées par position (extrémité émulateur = /dev/ptmx ; extrémité processus = /dev/pts/N). Le schéma détaille le flux d'entrée (clavier vers application), le flux de sortie (application vers écran) et la bifurcation de l'écho selon le mode canonique ou brut.</desc>
+
+  <defs>
+    <style>
+      .title    { font-size: 21px; font-weight: 700; fill: #1b1f2a; }
+      .subtitle { font-size: 13px; fill: #565d6d; }
+      .btitle   { font-size: 16px; font-weight: 700; fill: #1b1f2a; }
+      .stitle   { font-size: 14px; font-weight: 700; fill: #1b1f2a; }
+      .cap      { font-size: 11px; fill: #6b7180; }
+      .body     { font-size: 12px; fill: #2b3140; }
+      .mono     { font-family: Consolas, 'DejaVu Sans Mono', Menlo, monospace; }
+      .snum     { font-size: 12px; font-weight: 700; fill: #ffffff; }
+      .tagt     { font-size: 11.5px; font-weight: 700; }
+      .tagb     { font-size: 10.5px; fill: #2b3140; }
+      .foot     { font-size: 12px; fill: #39404f; }
+    </style>
+    <filter id="soft" x="-6%" y="-8%" width="112%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3.5" flood-color="#1b1f2a" flood-opacity="0.10"/>
+    </filter>
+    <marker id="arrIn" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto"><path d="M2,2 L11,7 L2,12 Z" fill="#2f6f9f"/></marker>
+    <marker id="arrOut" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto"><path d="M2,2 L11,7 L2,12 Z" fill="#c07d18"/></marker>
+    <marker id="arrEcho" markerWidth="14" markerHeight="14" refX="10" refY="7" orient="auto"><path d="M2,2 L11,7 L2,12 Z" fill="#8a5cc4"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1140" height="900" fill="#ffffff"/>
+
+  <text x="570" y="38" text-anchor="middle" class="title">Pile tty &#8596; bash &#8596; TUI &#8212; le flux d'octets, aller et retour</text>
+  <text x="570" y="62" text-anchor="middle" class="subtitle">Deux extrémités du pseudo-terminal, nommées par position, et ce qui circule dans chaque sens.</text>
+
+  <text x="95" y="88" class="tagt" fill="#2f6f9f">&#9660; ENTRÉE &#8212; clavier vers application</text>
+  <text x="1045" y="88" text-anchor="end" class="tagt" fill="#c07d18">SORTIE &#8212; application vers écran &#9650;</text>
+
+  <!-- ===== BAND A : ÉMULATEUR ===== -->
+  <g filter="url(#soft)"><rect x="80" y="96" width="980" height="120" rx="12" fill="#eaf2f8" stroke="#2f6f9f" stroke-width="1.5"/></g>
+  <rect x="80" y="96" width="6" height="120" rx="3" fill="#2f6f9f"/>
+  <text x="104" y="122" class="btitle">Émulateur de terminal</text>
+  <text x="104" y="140" class="cap mono">xterm &#183; Alacritty &#183; GNOME Terminal&#8230;</text>
+  <circle cx="120" cy="173" r="13" fill="#2f6f9f"/><text x="120" y="177" text-anchor="middle" class="snum">1</text>
+  <text x="140" y="169" class="body">Touche pressée &#8594;</text>
+  <text x="140" y="185" class="body">l'émulateur encode l'octet.</text>
+  <rect x="392" y="150" width="90" height="42" rx="6" fill="#14161f"/>
+  <g fill="#4a4f5e"><rect x="400" y="158" width="10" height="8" rx="1.5"/><rect x="414" y="158" width="10" height="8" rx="1.5"/><rect x="428" y="158" width="10" height="8" rx="1.5"/><rect x="442" y="158" width="10" height="8" rx="1.5"/><rect x="456" y="158" width="18" height="8" rx="1.5"/><rect x="400" y="170" width="24" height="8" rx="1.5"/><rect x="428" y="170" width="46" height="8" rx="1.5"/></g>
+  <rect x="576" y="128" width="118" height="64" rx="6" fill="#14161f"/>
+  <text x="586" y="150" class="mono" font-size="11" fill="#7fd88f">$ ./app</text>
+  <text x="586" y="168" class="mono" font-size="11" fill="#e06c6c">Erreur</text>
+  <rect x="586" y="176" width="7" height="11" fill="#7fd88f"/>
+  <circle cx="948" cy="152" r="13" fill="#c07d18"/><text x="948" y="156" text-anchor="middle" class="snum">8</text>
+  <text x="928" y="168" text-anchor="end" class="body">Lit, interprète les séquences,</text>
+  <text x="928" y="184" text-anchor="end" class="body">affiche les glyphes.</text>
+
+  <!-- ===== BAND B : NOYAU / PTY ===== -->
+  <g filter="url(#soft)"><rect x="80" y="270" width="980" height="290" rx="12" fill="#f4f3fc" stroke="#5b52c4" stroke-width="1.5"/></g>
+  <rect x="80" y="270" width="980" height="6" rx="3" fill="#5b52c4"/>
+  <text x="570" y="298" text-anchor="middle" class="btitle" fill="#3a338f">Noyau Linux &#8212; pseudo-terminal (PTY)</text>
+
+  <rect x="300" y="306" width="540" height="56" rx="9" fill="#ffffff" stroke="#b7b1e8" stroke-width="1.3"/>
+  <text x="360" y="332" class="stitle">Extrémité émulateur</text>
+  <text x="612" y="332" class="mono" font-size="13" fill="#5b52c4">/dev/ptmx</text>
+  <text x="360" y="351" class="cap">tenu par l'émulateur &#183; le noyau la nomme &#171;&#160;maître&#160;&#187; (position, non hiérarchie)</text>
+
+  <rect x="300" y="380" width="540" height="108" rx="9" fill="#ffffff" stroke="#b7b1e8" stroke-width="1.3"/>
+  <text x="360" y="404" class="stitle">Discipline de ligne</text>
+  <text x="524" y="404" class="cap">le &#171;&#160;régime&#160;&#187; de la ligne &#183; module N_TTY &#183; termios/stty</text>
+  <line x1="360" y1="414" x2="782" y2="414" stroke="#ece9fb" stroke-width="1.2"/>
+  <text x="360" y="438" class="body"><tspan fill="#2f6f9f" font-weight="700">Entrée :</tspan> canonique &#8594; édition de ligne + <tspan font-weight="700">ÉCHO</tspan> &#183; brut &#8594; octet tel quel</text>
+  <text x="360" y="462" class="body"><tspan fill="#c07d18" font-weight="700">Sortie :</tspan> post-traitement OPOST &#8594; <tspan class="mono" font-size="12">\n</tspan> devient <tspan class="mono" font-size="12">\r\n</tspan></text>
+
+  <rect x="300" y="506" width="540" height="52" rx="9" fill="#ffffff" stroke="#b7b1e8" stroke-width="1.3"/>
+  <text x="360" y="528" class="stitle">Extrémité processus</text>
+  <text x="612" y="528" class="mono" font-size="13" fill="#5b52c4">/dev/pts/N</text>
+  <text x="360" y="547" class="cap">= stdin/stdout/stderr &#183; le noyau la nomme &#171;&#160;esclave&#160;&#187;</text>
+
+  <!-- ===== BAND C : PROCESSUS ===== -->
+  <g filter="url(#soft)"><rect x="80" y="620" width="980" height="120" rx="12" fill="#e8f5ef" stroke="#2f8f6b" stroke-width="1.5"/></g>
+  <rect x="80" y="620" width="6" height="120" rx="3" fill="#2f8f6b"/>
+  <text x="104" y="646" class="btitle">Processus &#8212; bash / application TUI</text>
+  <text x="104" y="664" class="cap mono">readline (bash interactif) &#183; vim &#183; tmux &#183; Textual&#8230;</text>
+  <circle cx="120" cy="700" r="13" fill="#2f6f9f"/><text x="120" y="704" text-anchor="middle" class="snum">4</text>
+  <text x="140" y="704" class="body">Lit l'octet sur l'extrémité processus.</text>
+  <circle cx="600" cy="700" r="13" fill="#c07d18"/><text x="600" y="704" text-anchor="middle" class="snum">5</text>
+  <text x="620" y="696" class="body">Écrit des octets : texte +</text>
+  <text x="620" y="712" class="body">séquences d'affichage.</text>
+
+  <!-- ===== FLOW : threads through the box channels ===== -->
+  <!-- INPUT spine (blue, down) x=330 -->
+  <line x1="330" y1="216" x2="330" y2="618" stroke="#2f6f9f" stroke-width="2.4" marker-end="url(#arrIn)"/>
+  <circle cx="330" cy="252" r="13" fill="#2f6f9f"/><text x="330" y="256" text-anchor="middle" class="snum">2</text>
+  <text x="348" y="248" class="cap" fill="#2f6f9f">écrit sur l'extrémité émulateur</text>
+  <circle cx="330" cy="433" r="13" fill="#2f6f9f"/><text x="330" y="437" text-anchor="middle" class="snum">3</text>
+
+  <!-- OUTPUT spine (amber, up) x=810 -->
+  <line x1="810" y1="618" x2="810" y2="216" stroke="#c07d18" stroke-width="2.4" marker-end="url(#arrOut)"/>
+  <circle cx="810" cy="252" r="13" fill="#c07d18"/><text x="810" y="256" text-anchor="middle" class="snum">7</text>
+  <text x="792" y="248" text-anchor="end" class="cap" fill="#c07d18">ressort par l'extrémité émulateur</text>
+  <circle cx="810" cy="433" r="13" fill="#c07d18"/><text x="810" y="437" text-anchor="middle" class="snum">6</text>
+
+  <!-- ECHO (violet dashed, up) x=250 -->
+  <line x1="250" y1="378" x2="250" y2="216" stroke="#8a5cc4" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrEcho)"/>
+  <text x="92" y="312" class="tagt" fill="#8a5cc4">&#8631; ÉCHO</text>
+  <text x="150" y="312" class="cap" fill="#6b5aa0">(mode canonique)</text>
+  <text x="92" y="332" class="tagb">le noyau renvoie le caractère</text>
+  <text x="92" y="347" class="tagb">à l'écran ; l'application ne</text>
+  <text x="92" y="362" class="tagb">le voit pas encore.</text>
+
+  <!-- ===== SIDE TAGS : type d'octets ===== -->
+  <rect x="88" y="398" width="150" height="92" rx="9" fill="#eef4f9" stroke="#bcd3e5" stroke-width="1.2"/>
+  <text x="100" y="418" class="tagt" fill="#2f6f9f">Octets d'ENTRÉE</text>
+  <text x="100" y="436" class="tagb">un caractère, ou une</text>
+  <text x="100" y="451" class="tagb">séquence : flèche <tspan class="mono">\e[A</tspan>,</text>
+  <text x="100" y="466" class="tagb">fonctions, souris&#8230;</text>
+  <text x="100" y="482" class="tagb" fill="#6b7180">(séquences dans les 2 sens)</text>
+
+  <rect x="902" y="392" width="154" height="112" rx="9" fill="#fbf4e8" stroke="#e6cfa6" stroke-width="1.2"/>
+  <text x="914" y="412" class="tagt" fill="#c07d18">Octets de SORTIE</text>
+  <text x="914" y="430" class="tagb">texte UTF-8 + contrôles</text>
+  <text x="914" y="445" class="tagb">C0 (<tspan class="mono">\n \r \t</tspan>) + séquences</text>
+  <text x="914" y="460" class="tagb">CSI / OSC : curseur,</text>
+  <text x="914" y="475" class="tagb">couleurs, effacement&#8230;</text>
+  <text x="914" y="493" class="tagb mono" fill="#39404f">ex. \e[1;31mErreur\e[0m</text>
+
+  <!-- ===== FOOTER ===== -->
+  <line x1="80" y1="792" x2="1060" y2="792" stroke="#e4e7ee" stroke-width="1.2"/>
+  <rect x="80" y="806" width="26" height="4" rx="2" fill="#2f6f9f"/><text x="114" y="814" class="foot">entrée : clavier &#8594; application</text>
+  <rect x="320" y="806" width="26" height="4" rx="2" fill="#c07d18"/><text x="354" y="814" class="foot">sortie : application &#8594; écran</text>
+  <line x1="560" y1="808" x2="586" y2="808" stroke="#8a5cc4" stroke-width="3" stroke-dasharray="5 3"/><text x="596" y="814" class="foot">écho du noyau (mode canonique)</text>
+  <text x="80" y="840" class="foot" font-style="italic">En mode brut (bash/readline, applications TUI), l'écho du noyau est coupé : c'est l'application qui réaffiche, par la voie de sortie 5&#8594;8.</text>
+</svg>

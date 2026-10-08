@@ -1,0 +1,127 @@
+<svg viewBox="0 0 1180 675" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <title>Shell distant via PPP sur port série puis ssh</title>
+  <desc>Sur la liaison série, la discipline de ligne est N_PPP : la ligne transporte des paquets IP, pas un terminal. ssh recrée un terminal (un pty, discipline N_TTY) sur la machine distante. Le terminal vit aux deux bouts, jamais sur le fil.</desc>
+
+  <defs>
+    <style>
+      .title    { font-size: 21px; font-weight: 700; fill: #1b1f2a; }
+      .subtitle { font-size: 13px; fill: #565d6d; }
+      .mlabel   { font-size: 12px; font-weight: 700; fill: #6b7180; letter-spacing: 0.5px; }
+      .lt       { font-size: 13px; font-weight: 700; }
+      .ls       { font-size: 10.5px; fill: #6b7180; }
+      .mono     { font-family: Consolas, 'DejaVu Sans Mono', Menlo, monospace; }
+      .cot      { font-size: 11.5px; font-weight: 700; }
+      .cob      { font-size: 10.5px; fill: #2b3140; }
+      .band     { font-size: 12px; fill: #2b3140; }
+    </style>
+    <filter id="soft" x="-6%" y="-10%" width="112%" height="120%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="3" flood-color="#1b1f2a" flood-opacity="0.10"/>
+    </filter>
+    <marker id="dn" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#55607a"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1180" height="675" fill="#ffffff"/>
+
+  <text x="590" y="40" text-anchor="middle" class="title">Un shell distant par PPP sur liaison série, puis ssh</text>
+  <text x="590" y="64" text-anchor="middle" class="subtitle">Le terminal vit aux deux bouts (N_TTY) ; sur le fil, la discipline est N_PPP &#8212; un tuyau à paquets, pas un terminal.</text>
+
+  <text x="80" y="94" class="mlabel">MACHINE LOCALE</text>
+  <text x="1100" y="94" text-anchor="end" class="mlabel">MACHINE DISTANTE</text>
+
+  <!-- panels -->
+  <rect x="64" y="104" width="422" height="370" rx="12" fill="#fbfbfd" stroke="#e6e8ee"/>
+  <rect x="694" y="104" width="422" height="370" rx="12" fill="#fbfbfd" stroke="#e6e8ee"/>
+
+  <text x="275" y="122" text-anchor="middle" class="ls">&#9660; vos frappes descendent la pile</text>
+  <text x="905" y="122" text-anchor="middle" class="ls">&#9650; elles remontent jusqu'au shell</text>
+
+  <!-- ===== LOCAL STACK ===== -->
+  <!-- L1 green -->
+  <g filter="url(#soft)"><rect x="80" y="130" width="390" height="56" rx="8" fill="#e8f5ef" stroke="#2f8f6b"/></g><rect x="80" y="130" width="5" height="56" rx="2.5" fill="#2f8f6b"/>
+  <text x="98" y="152" class="lt" fill="#236b50">Votre terminal <tspan class="mono" font-size="11">(N_TTY)</tspan></text>
+  <text x="98" y="172" class="ls">vous tapez ici &#8212; le client ssh y tourne</text>
+  <!-- L2 indigo -->
+  <g filter="url(#soft)"><rect x="80" y="200" width="390" height="56" rx="8" fill="#ecedf8" stroke="#4a55b0"/></g><rect x="80" y="200" width="5" height="56" rx="2.5" fill="#4a55b0"/>
+  <text x="98" y="222" class="lt" fill="#3a439a">client ssh</text>
+  <text x="98" y="242" class="ls">chiffre la session</text>
+  <!-- L3 slate -->
+  <g filter="url(#soft)"><rect x="80" y="270" width="390" height="56" rx="8" fill="#eaf0f5" stroke="#4f6b86"/></g><rect x="80" y="270" width="5" height="56" rx="2.5" fill="#4f6b86"/>
+  <text x="98" y="292" class="lt" fill="#3e566d">pile TCP / IP</text>
+  <text x="98" y="312" class="ls">paquets routés vers la machine distante</text>
+  <!-- L4 violet -->
+  <g filter="url(#soft)"><rect x="80" y="340" width="390" height="56" rx="8" fill="#f0eefb" stroke="#5b52c4"/></g><rect x="80" y="340" width="5" height="56" rx="2.5" fill="#5b52c4"/>
+  <text x="98" y="362" class="lt" fill="#4038a0">pppd &#8212; discipline <tspan class="mono" font-size="11">N_PPP</tspan></text>
+  <text x="98" y="382" class="ls">l'IP devient des trames PPP</text>
+  <!-- L5 gray -->
+  <g filter="url(#soft)"><rect x="80" y="410" width="390" height="56" rx="8" fill="#f0f1f3" stroke="#6b7180"/></g><rect x="80" y="410" width="5" height="56" rx="2.5" fill="#6b7180"/>
+  <text x="98" y="432" class="lt" fill="#565d6d">UART <tspan class="mono" font-size="12">/dev/ttyS0</tspan></text>
+  <text x="98" y="452" class="ls">octets série bruts</text>
+
+  <!-- ===== REMOTE STACK ===== -->
+  <g filter="url(#soft)"><rect x="710" y="130" width="390" height="56" rx="8" fill="#e8f5ef" stroke="#2f8f6b"/></g><rect x="710" y="130" width="5" height="56" rx="2.5" fill="#2f8f6b"/>
+  <text x="728" y="152" class="lt" fill="#236b50"><tspan class="mono" font-size="12">/dev/pts/N</tspan> &#8594; shell distant</text>
+  <text x="728" y="172" class="ls">LE terminal, recréé ici par ssh <tspan class="mono" font-size="10">(N_TTY)</tspan></text>
+
+  <g filter="url(#soft)"><rect x="710" y="200" width="390" height="56" rx="8" fill="#ecedf8" stroke="#4a55b0"/></g><rect x="710" y="200" width="5" height="56" rx="2.5" fill="#4a55b0"/>
+  <text x="728" y="222" class="lt" fill="#3a439a">sshd</text>
+  <text x="728" y="242" class="ls">déchiffre &#8212; alloue le pty, lance le shell</text>
+
+  <g filter="url(#soft)"><rect x="710" y="270" width="390" height="56" rx="8" fill="#eaf0f5" stroke="#4f6b86"/></g><rect x="710" y="270" width="5" height="56" rx="2.5" fill="#4f6b86"/>
+  <text x="728" y="292" class="lt" fill="#3e566d">pile TCP / IP</text>
+  <text x="728" y="312" class="ls">reçoit les paquets, les remet à sshd</text>
+
+  <g filter="url(#soft)"><rect x="710" y="340" width="390" height="56" rx="8" fill="#f0eefb" stroke="#5b52c4"/></g><rect x="710" y="340" width="5" height="56" rx="2.5" fill="#5b52c4"/>
+  <text x="728" y="362" class="lt" fill="#4038a0">pppd &#8212; discipline <tspan class="mono" font-size="11">N_PPP</tspan></text>
+  <text x="728" y="382" class="ls">les trames PPP redeviennent de l'IP</text>
+
+  <g filter="url(#soft)"><rect x="710" y="410" width="390" height="56" rx="8" fill="#f0f1f3" stroke="#6b7180"/></g><rect x="710" y="410" width="5" height="56" rx="2.5" fill="#6b7180"/>
+  <text x="728" y="432" class="lt" fill="#565d6d">UART <tspan class="mono" font-size="12">/dev/ttyS0</tspan></text>
+  <text x="728" y="452" class="ls">octets série bruts</text>
+
+  <!-- flow arrows local (down) -->
+  <g>
+    <line x1="275" y1="187" x2="275" y2="199" stroke="#55607a" stroke-width="2" marker-end="url(#dn)"/>
+    <line x1="275" y1="257" x2="275" y2="269" stroke="#55607a" stroke-width="2" marker-end="url(#dn)"/>
+    <line x1="275" y1="327" x2="275" y2="339" stroke="#55607a" stroke-width="2" marker-end="url(#dn)"/>
+    <line x1="275" y1="397" x2="275" y2="409" stroke="#55607a" stroke-width="2" marker-end="url(#dn)"/>
+  </g>
+  <!-- flow arrows remote (up) -->
+  <g>
+    <line x1="905" y1="409" x2="905" y2="397" stroke="#55607a" stroke-width="2" marker-end="url(#dn)"/>
+    <line x1="905" y1="339" x2="905" y2="327" stroke="#55607a" stroke-width="2" marker-end="url(#dn)"/>
+    <line x1="905" y1="269" x2="905" y2="257" stroke="#55607a" stroke-width="2" marker-end="url(#dn)"/>
+    <line x1="905" y1="199" x2="905" y2="187" stroke="#55607a" stroke-width="2" marker-end="url(#dn)"/>
+  </g>
+
+  <!-- cable -->
+  <path d="M275,466 L275,498 L905,498 L905,466" fill="none" stroke="#6b7180" stroke-width="3.5"/>
+  <circle cx="275" cy="498" r="4" fill="#6b7180"/><circle cx="905" cy="498" r="4" fill="#6b7180"/>
+  <text x="590" y="490" text-anchor="middle" class="ls">câble série &#183; RS-232 ou adaptateur USB-série &#183; octets bruts, aucune notion de terminal</text>
+
+  <!-- ===== CENTRAL CALLOUTS ===== -->
+  <!-- top : N_TTY -->
+  <rect x="500" y="128" width="180" height="70" rx="9" fill="#eefaf4" stroke="#a9dcc6"/>
+  <text x="512" y="147" class="cot" fill="#236b50">N_TTY aux deux bouts</text>
+  <text x="512" y="164" class="cob">Le terminal est recréé à</text>
+  <text x="512" y="178" class="cob">distance par ssh (un pty),</text>
+  <text x="512" y="192" class="cob">jamais porté par le fil.</text>
+  <line x1="470" y1="150" x2="500" y2="150" stroke="#a9dcc6" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <line x1="680" y1="150" x2="710" y2="150" stroke="#a9dcc6" stroke-width="1.3" stroke-dasharray="4 3"/>
+
+  <!-- mid : N_PPP -->
+  <rect x="500" y="338" width="180" height="70" rx="9" fill="#f2f0fc" stroke="#c3bcee"/>
+  <text x="512" y="357" class="cot" fill="#4038a0">N_PPP sur le fil</text>
+  <text x="512" y="374" class="cob">Régime changé (TIOCSETD).</text>
+  <text x="512" y="388" class="cob">La liaison série porte des</text>
+  <text x="512" y="402" class="cob">paquets IP, pas un terminal.</text>
+  <line x1="470" y1="368" x2="500" y2="368" stroke="#c3bcee" stroke-width="1.3" stroke-dasharray="4 3"/>
+  <line x1="680" y1="368" x2="710" y2="368" stroke="#c3bcee" stroke-width="1.3" stroke-dasharray="4 3"/>
+
+  <!-- ===== PATH A BAND ===== -->
+  <rect x="64" y="524" width="1052" height="66" rx="10" fill="#f5f5f7" stroke="#dcdfe6"/><rect x="64" y="524" width="5" height="66" rx="2.5" fill="#8a90a0"/>
+  <text x="86" y="546" class="lt" fill="#4a4f5e">L'autre voie &#8212; la console série (sans PPP, sans ssh)</text>
+  <text x="86" y="568" class="band">Un <tspan class="mono" font-size="11">getty</tspan> sur <tspan class="mono" font-size="11">/dev/ttyS0</tspan> garde la discipline <tspan font-weight="700">N_TTY</tspan> et sert l'invite de connexion directement : le terminal roule sur le fil même, sans IP ni chiffrement.</text>
+  <text x="86" y="584" class="ls">Plus simple, mais aucun réseau au-dessus &#8212; on ne fait que se connecter à cette machine-là.</text>
+
+  <text x="70" y="612" class="ls" font-style="italic">Historiquement, l'accès Internet par modem enchaînait les deux : ouvrir une session en terminal (N_TTY), s'authentifier, puis lancer pppd qui bascule la même ligne en N_PPP. Une ligne, deux régimes successifs.</text>
+</svg>

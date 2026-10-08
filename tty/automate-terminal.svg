@@ -1,0 +1,131 @@
+<svg viewBox="0 0 1180 748" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+  <title>L'automate d'analyse du terminal — aucune sortie « erreur »</title>
+  <desc>Machine à états (d'après l'automate de Paul Williams) que le terminal fait tourner sur le flux d'octets. Chaque octet provoque une transition définie : imprimer, exécuter ou collecter. L'inconnu est ignoré, le malformé abandonné — et tout retombe à l'état Sol. Il n'existe aucune transition d'erreur.</desc>
+
+  <defs>
+    <style>
+      .title    { font-size: 21px; font-weight: 700; fill: #1b1f2a; }
+      .subtitle { font-size: 13px; fill: #565d6d; }
+      .nname    { font-size: 14px; font-weight: 700; }
+      .nsub     { font-size: 10px; }
+      .elab     { font-size: 10.5px; fill: #3a3f4c; }
+      .elabm    { font-family: Consolas, monospace; font-size: 10px; fill: #55607a; }
+      .mono     { font-family: Consolas, 'DejaVu Sans Mono', Menlo, monospace; }
+      .boxt     { font-size: 12px; font-weight: 700; }
+      .boxb     { font-size: 11px; fill: #2b3140; }
+      .leg      { font-size: 11px; fill: #2b3140; }
+    </style>
+    <filter id="soft" x="-8%" y="-12%" width="116%" height="124%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="2.6" flood-color="#1b1f2a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="mN" markerWidth="11" markerHeight="11" refX="8" refY="5.5" orient="auto"><path d="M2,2 L9,5.5 L2,9 Z" fill="#3a3f4c"/></marker>
+    <marker id="mG" markerWidth="11" markerHeight="11" refX="8" refY="5.5" orient="auto"><path d="M2,2 L9,5.5 L2,9 Z" fill="#2f8f6b"/></marker>
+    <marker id="mA" markerWidth="11" markerHeight="11" refX="8" refY="5.5" orient="auto"><path d="M2,2 L9,5.5 L2,9 Z" fill="#c07d18"/></marker>
+    <marker id="mS" markerWidth="11" markerHeight="11" refX="8" refY="5.5" orient="auto"><path d="M2,2 L9,5.5 L2,9 Z" fill="#8a90a0"/></marker>
+  </defs>
+
+  <rect x="0" y="0" width="1180" height="748" fill="#ffffff"/>
+
+  <text x="590" y="40" text-anchor="middle" class="title">L'automate du terminal : chaque octet a sa transition</text>
+  <text x="590" y="64" text-anchor="middle" class="subtitle">Trois dispositions seulement &#8212; imprimer, exécuter, collecter &#8212; et aucune sortie «&#160;erreur&#160;» : tout retombe au Sol.</text>
+
+  <!-- ===== RETURN ARCS (drawn first, behind nodes) ===== -->
+  <!-- green : dispatch success -->
+  <path d="M825,358 C825,590 200,588 175,362" fill="none" stroke="#2f8f6b" stroke-width="2" marker-end="url(#mG)" opacity="0.85"/>
+  <!-- amber : abort from ignore -->
+  <path d="M825,496 C815,632 260,624 168,364" fill="none" stroke="#c07d18" stroke-width="2" marker-end="url(#mA)" opacity="0.9"/>
+  <!-- gray : string terminated -->
+  <path d="M620,496 C560,576 300,572 165,360" fill="none" stroke="#8a90a0" stroke-width="1.8" marker-end="url(#mS)" opacity="0.85"/>
+
+  <!-- ===== NODES ===== -->
+  <!-- SOL -->
+  <g filter="url(#soft)"><rect x="90" y="300" width="150" height="58" rx="12" fill="#e8f5ef" stroke="#2f8f6b" stroke-width="1.7"/></g>
+  <text x="165" y="326" text-anchor="middle" class="nname" fill="#236b50">SOL</text>
+  <text x="165" y="344" text-anchor="middle" class="nsub" fill="#4f8f75">l'état de repos (ground)</text>
+  <!-- ESCAPE -->
+  <g filter="url(#soft)"><rect x="320" y="300" width="150" height="58" rx="12" fill="#f0eefb" stroke="#5b52c4" stroke-width="1.5"/></g>
+  <text x="395" y="326" text-anchor="middle" class="nname" fill="#4038a0">ÉCHAPPEMENT</text>
+  <text x="395" y="344" text-anchor="middle" class="nsub" fill="#6b63c0">on a vu ESC</text>
+  <!-- ESC INTER -->
+  <g filter="url(#soft)"><rect x="320" y="168" width="150" height="52" rx="12" fill="#f0eefb" stroke="#5b52c4" stroke-width="1.5"/></g>
+  <text x="395" y="190" text-anchor="middle" class="nname" fill="#4038a0" font-size="12.5">ÉCHAP. INTERM.</text>
+  <text x="395" y="206" text-anchor="middle" class="nsub" fill="#6b63c0">collecte 20–2F</text>
+  <!-- CSI ENTRY -->
+  <g filter="url(#soft)"><rect x="545" y="300" width="150" height="58" rx="12" fill="#f0eefb" stroke="#5b52c4" stroke-width="1.5"/></g>
+  <text x="620" y="326" text-anchor="middle" class="nname" fill="#4038a0">CSI ENTRÉE</text>
+  <text x="620" y="344" text-anchor="middle" class="nsub" fill="#6b63c0">on a vu ESC [</text>
+  <!-- CSI PARAM -->
+  <g filter="url(#soft)"><rect x="750" y="300" width="150" height="58" rx="12" fill="#f0eefb" stroke="#5b52c4" stroke-width="1.5"/></g>
+  <text x="825" y="326" text-anchor="middle" class="nname" fill="#4038a0">CSI PARAM.</text>
+  <text x="825" y="344" text-anchor="middle" class="nsub" fill="#6b63c0">collecte 30–3B</text>
+  <!-- CSI INTER -->
+  <g filter="url(#soft)"><rect x="955" y="300" width="150" height="58" rx="12" fill="#f0eefb" stroke="#5b52c4" stroke-width="1.5"/></g>
+  <text x="1030" y="326" text-anchor="middle" class="nname" fill="#4038a0">CSI INTERM.</text>
+  <text x="1030" y="344" text-anchor="middle" class="nsub" fill="#6b63c0">collecte 20–2F</text>
+  <!-- CSI IGNORE -->
+  <g filter="url(#soft)"><rect x="750" y="440" width="150" height="56" rx="12" fill="#fbf4e8" stroke="#c07d18" stroke-width="1.7"/></g>
+  <text x="825" y="465" text-anchor="middle" class="nname" fill="#9a6410">CSI IGNORE</text>
+  <text x="825" y="483" text-anchor="middle" class="nsub" fill="#b5893a">séquence abandonnée</text>
+  <!-- STRING -->
+  <g filter="url(#soft)"><rect x="545" y="440" width="150" height="56" rx="12" fill="#f0f1f3" stroke="#6b7180" stroke-width="1.5"/></g>
+  <text x="620" y="465" text-anchor="middle" class="nname" fill="#565d6d">CHAÎNE</text>
+  <text x="620" y="483" text-anchor="middle" class="nsub" fill="#7c828f">OSC / DCS — collecte</text>
+
+  <!-- ===== MAIN FLOW EDGES ===== -->
+  <line x1="240" y1="329" x2="318" y2="329" stroke="#3a3f4c" stroke-width="1.8" marker-end="url(#mN)"/>
+  <text x="279" y="322" text-anchor="middle" class="elab">ESC</text><text x="279" y="343" text-anchor="middle" class="elabm">1B</text>
+  <line x1="470" y1="329" x2="543" y2="329" stroke="#3a3f4c" stroke-width="1.8" marker-end="url(#mN)"/>
+  <text x="506" y="322" text-anchor="middle" class="elab">[</text><text x="506" y="343" text-anchor="middle" class="elabm">5B</text>
+  <line x1="695" y1="329" x2="748" y2="329" stroke="#3a3f4c" stroke-width="1.8" marker-end="url(#mN)"/>
+  <text x="721" y="322" text-anchor="middle" class="elabm">30–3B</text>
+  <line x1="900" y1="329" x2="953" y2="329" stroke="#3a3f4c" stroke-width="1.8" marker-end="url(#mN)"/>
+  <text x="927" y="322" text-anchor="middle" class="elabm">20–2F</text>
+
+  <!-- escape -> esc inter (up) -->
+  <line x1="395" y1="300" x2="395" y2="222" stroke="#3a3f4c" stroke-width="1.8" marker-end="url(#mN)"/>
+  <text x="408" y="264" class="elabm">20–2F</text>
+  <!-- escape -> string (down) -->
+  <path d="M395,358 C420,420 480,455 553,462" fill="none" stroke="#3a3f4c" stroke-width="1.8" marker-end="url(#mN)"/>
+  <text x="430" y="440" class="elabm">] P X ^ _</text>
+
+  <!-- csi entry/param/inter -> ignore -->
+  <path d="M620,358 C650,410 720,445 762,452" fill="none" stroke="#c07d18" stroke-width="1.6" marker-end="url(#mA)"/>
+  <text x="628" y="404" class="elabm" fill="#9a6410">: (3A)</text>
+  <line x1="825" y1="358" x2="825" y2="438" stroke="#c07d18" stroke-width="1.6" marker-end="url(#mA)"/>
+  <text x="818" y="404" text-anchor="end" class="elabm" fill="#9a6410">&lt; = &gt; ? (invalide)</text>
+  <path d="M1030,358 C1000,410 930,445 888,452" fill="none" stroke="#c07d18" stroke-width="1.6" marker-end="url(#mA)"/>
+  <text x="966" y="400" class="elabm" fill="#9a6410">30–3F après interm.</text>
+
+  <!-- ===== SELF LOOPS ===== -->
+  <path d="M140,302 C128,278 202,278 190,302" fill="none" stroke="#2f8f6b" stroke-width="1.5" marker-end="url(#mG)"/>
+  <text x="165" y="272" text-anchor="middle" class="elab" fill="#236b50">imprimer 20–7E · exécuter 00–1F</text>
+  <path d="M800,302 C790,282 860,282 850,302" fill="none" stroke="#5b52c4" stroke-width="1.4" marker-end="url(#mN)"/>
+  <path d="M1005,302 C995,282 1065,282 1055,302" fill="none" stroke="#5b52c4" stroke-width="1.4" marker-end="url(#mN)"/>
+  <path d="M800,498 C790,520 860,520 850,498" fill="none" stroke="#c07d18" stroke-width="1.4" marker-end="url(#mA)"/>
+  <text x="825" y="534" text-anchor="middle" class="elabm" fill="#9a6410">avaler tout sauf l'octet final</text>
+  <path d="M595,498 C585,520 655,520 645,498" fill="none" stroke="#6b7180" stroke-width="1.4" marker-end="url(#mS)"/>
+
+  <!-- ===== GLOBAL RULE BOX ===== -->
+  <rect x="858" y="150" width="298" height="104" rx="10" fill="#f7f4fc" stroke="#c3bcee" stroke-width="1.3"/>
+  <text x="874" y="172" class="boxt" fill="#4038a0">Depuis N'IMPORTE QUEL état</text>
+  <text x="874" y="194" class="boxb"><tspan class="mono" font-size="10.5">ESC</tspan> (1B) &#8594; on recommence (Échappement)</text>
+  <text x="874" y="214" class="boxb"><tspan class="mono" font-size="10.5">CAN</tspan> (18) / <tspan class="mono" font-size="10.5">SUB</tspan> (1A) &#8594; on annule &#8594; Sol</text>
+  <text x="874" y="234" class="boxb">un octet imprévu ne provoque jamais d'arrêt :</text>
+  <text x="874" y="248" class="boxb">il y a toujours une transition définie.</text>
+
+  <!-- ===== RETURN LEGEND ===== -->
+  <line x1="96" y1="452" x2="132" y2="452" stroke="#2f8f6b" stroke-width="2.2" marker-end="url(#mG)"/>
+  <text x="140" y="456" class="leg">octet final <tspan class="mono" font-size="10">40–7E</tspan> &#8594; commande exécutée (ou <tspan font-weight="700">ignorée</tspan> si inconnue) &#8594; Sol</text>
+  <line x1="96" y1="474" x2="132" y2="474" stroke="#c07d18" stroke-width="2.2" marker-end="url(#mA)"/>
+  <text x="140" y="478" class="leg">séquence <tspan font-weight="700">malformée</tspan> &#8594; abandonnée sans effet &#8594; Sol</text>
+  <line x1="96" y1="496" x2="132" y2="496" stroke="#8a90a0" stroke-width="2.2" marker-end="url(#mS)"/>
+  <text x="140" y="500" class="leg">chaîne close par son terminateur (<tspan class="mono" font-size="10">ST</tspan>) &#8594; Sol</text>
+  <text x="96" y="524" class="leg" fill="#6b7180" font-style="italic">(le retour au Sol vaut depuis CSI ENTRÉE, PARAM ou INTERM.)</text>
+
+  <!-- ===== THÈSE ===== -->
+  <rect x="64" y="648" width="1052" height="84" rx="10" fill="#f7f5ee" stroke="#d9cfa8" stroke-width="1.4"/>
+  <rect x="64" y="648" width="5" height="84" rx="2.5" fill="#b7902f"/>
+  <text x="86" y="674" class="boxt" fill="#6e5a24" font-size="13.5">Aucune sortie «&#160;erreur&#160;» — et ce n'est pas un hasard.</text>
+  <text x="86" y="697" class="boxb" font-size="11.5">L'inconnu est ignoré, le malformé abandonné, l'octet invalide remplacé par le caractère U+FFFD en UTF-8. Un récepteur qui planterait à la première surprise ne survivrait pas</text>
+  <text x="86" y="715" class="boxb" font-size="11.5">sur une interface publique, sans version ni accord préalable. La robustesse n'est pas ajoutée après coup : c'est le prix d'entrée dans le commun.</text>
+</svg>

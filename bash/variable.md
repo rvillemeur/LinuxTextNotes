@@ -31,6 +31,9 @@ done
 
 La distinction `$var` vs `"$var"` est fondamentale — c'est la source de la plupart des bugs shell.
 
+use double-quotes. It will be replaced with the variable contents but it won't be expanded.
+Il faut se souvenir que en shell, tout est texte. Le shell va étendre le texte dans les variables, s'il trouve un *, un {}, etc. Pour pouvoir utiliser ces caractères, ou éviter les mauvaises surprises, les encadrer par des ".
+
 ## Les vrais tableaux
 
 Pour stocker plusieurs valeurs, Bash a des tableaux dédiés :
